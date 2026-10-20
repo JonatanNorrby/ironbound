@@ -53,9 +53,54 @@ header{display:flex;align-items:center;justify-content:space-between;gap:20px;pa
 /* Persistent build/version marker */
 .version-badge{position:fixed;top:10px;left:10px;z-index:9999;padding:5px 9px;border:1px solid #76613c;border-radius:6px;background:#10140fee;color:var(--gold);font:700 11px/1.2 ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.08em;box-shadow:0 2px 10px #0006;pointer-events:none}
 @media(max-width:620px){.wrap{padding-top:48px}.version-badge{top:7px;left:7px}}
+
+/* v0.3.0 — tactical battle map */
+.tactical-scene{position:relative;isolation:isolate;min-height:390px;overflow:hidden;border:1px solid #687251;border-radius:12px;background:#35462e;box-shadow:inset 0 0 65px #10180f99}
+.tactical-terrain{position:absolute;inset:0;z-index:-2;background:radial-gradient(ellipse at 18% 15%,#7b8951 0 8%,transparent 29%),radial-gradient(ellipse at 83% 83%,#253d2a 0 12%,transparent 34%),linear-gradient(165deg,#526a3e,#3b5335 48%,#2b422d)}
+.tactical-scene.fortress-scene .tactical-terrain{background:radial-gradient(ellipse at 50% 50%,#826548 0,transparent 47%),linear-gradient(155deg,#6d5a40,#4c4432 52%,#302f26)}
+.terrain-rut{position:absolute;left:-10%;top:45%;width:120%;height:86px;transform:rotate(-8deg);background:#c5b17a22;border-block:2px solid #d4c58a35;box-shadow:0 0 0 13px #1a2c1a16;z-index:-1}
+.terrain-rut:after{content:"";position:absolute;inset:10px 0;background:repeating-linear-gradient(90deg,transparent 0 32px,#d5c28a15 33px 35px)}
+.terrain-rock{position:absolute;width:34px;height:23px;background:linear-gradient(140deg,#89906a,#3d5038);clip-path:polygon(18% 25%,54% 0,100% 43%,81% 100%,8% 85%,0 48%);opacity:.8}
+.terrain-rock.r1{left:7%;top:24%}.terrain-rock.r2{right:8%;bottom:17%;transform:scale(1.35)}.terrain-tree{position:absolute;width:35px;height:42px;filter:drop-shadow(2px 5px 1px #101a0d66)}
+.terrain-tree:before{content:"";position:absolute;left:9px;top:0;width:27px;height:27px;border-radius:45% 55% 42% 58%;background:#263f2a;border:2px solid #60764a;box-shadow:-8px 9px 0 -2px #354f2e,3px 12px 0 -3px #4d6639}
+.terrain-tree:after{content:"";position:absolute;left:20px;top:23px;width:7px;height:18px;background:#594b31}
+.terrain-tree.t1{left:3%;bottom:10%}.terrain-tree.t2{right:5%;top:12%;transform:scale(.8)}
+.fortress-silhouette{position:absolute;right:4%;top:8%;width:130px;height:100px;opacity:.7;filter:drop-shadow(0 5px 2px #181a13)}
+.fortress-silhouette:before{content:"";position:absolute;bottom:0;left:10px;width:105px;height:55px;background:repeating-linear-gradient(90deg,#514537 0 14px,#776348 15px 18px);border:3px solid #9a8057;border-bottom:0}
+.fortress-silhouette:after{content:"";position:absolute;left:0;top:0;width:32px;height:66px;background:linear-gradient(90deg,#574936,#9b8058);box-shadow:94px 0 0 #66543c;border:2px solid #a28a5f}
+.fortress-gate{position:absolute;right:10%;top:54px;width:25px;height:47px;background:#1c2119;border:3px solid #9c8056;border-radius:14px 14px 0 0}
+.scene-topbar{position:absolute;top:10px;left:10px;right:10px;display:flex;justify-content:space-between;gap:8px;z-index:5;pointer-events:none}
+.scene-team{padding:6px 9px;background:#101710d9;border:1px solid #a0b98777;border-radius:6px;font-size:10px;letter-spacing:.12em;font-weight:900;color:#dce8ca;text-shadow:0 1px #000}
+.scene-team.orcs{border-color:#d28b6b88;color:#f0c1a9}
+.scene-round{position:absolute;top:48px;left:50%;transform:translateX(-50%);padding:4px 10px;border-radius:20px;background:#11180ed9;border:1px solid #d3c38b55;color:#eadca9;font-size:10px;letter-spacing:.1em;z-index:5;white-space:nowrap}
+.scene-divider{position:absolute;top:17%;bottom:10%;left:50%;width:2px;background:linear-gradient(transparent,#e5d8a755,transparent);z-index:1}
+.scene-divider:after{content:"⚔";position:absolute;top:48%;left:50%;transform:translate(-50%,-50%);display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:#202b1c;border:1px solid #d6c17c77;color:#e6ce86;font-size:17px}
+.scene-formation{position:absolute;top:22%;bottom:10%;width:43%;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(3,minmax(0,1fr));align-items:center;justify-items:center;z-index:3}
+.scene-formation.friendly-formation{left:3%}.scene-formation.enemy-formation{right:3%}
+.scene-unit{position:relative;width:clamp(48px,7vw,67px);height:72px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:3px;animation:unit-bob 1.7s ease-in-out var(--delay,0s) infinite;filter:drop-shadow(0 4px 2px #162015aa)}
+.scene-unit .unit-token{width:44px;height:44px;display:grid;place-items:center;border-radius:50%;font-size:25px;background:radial-gradient(circle at 35% 25%,#7f9c69,#2b472e 72%);border:2px solid #b5d18a;box-shadow:inset 0 0 0 3px #19291b,0 0 0 2px #18251988}
+.scene-unit.orc-token .unit-token{background:radial-gradient(circle at 35% 25%,#bc795b,#623629 72%);border-color:#e2a17f;box-shadow:inset 0 0 0 3px #3b211b,0 0 0 2px #241a15aa}
+.scene-unit .unit-hp{width:43px;height:5px;background:#161a13;border:1px solid #0b100b;border-radius:3px;overflow:hidden}
+.scene-unit .unit-hp i{display:block;width:100%;height:100%;background:linear-gradient(90deg,#9fca75,#d8e79b)}
+.scene-unit.orc-token .unit-hp i{background:linear-gradient(90deg,#ba6047,#edaa79)}
+.scene-unit .unit-caption{max-width:64px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:9px;font-weight:800;color:#f0eedc;text-shadow:0 1px 3px #000,0 1px 5px #000;text-align:center}
+.scene-unit:nth-child(2){transform:translateY(8px)}.scene-unit:nth-child(3){transform:translateY(-5px)}
+.scene-unit.attacking{animation:unit-lunge .55s ease-in-out infinite alternate}
+.enemy-formation .scene-unit{animation-name:unit-bob-enemy}
+.scene-unit.siege-token .unit-token{border-radius:9px;background:linear-gradient(145deg,#b9a174,#5a4a30);font-size:27px}
+.scene-impact{position:absolute;left:50%;top:56%;transform:translate(-50%,-50%);font-size:36px;color:#ffe49b;text-shadow:0 0 18px #ffb13b,0 2px 4px #000;animation:impact-pulse .65s ease-in-out infinite alternate;z-index:4}
+.scene-footer{position:absolute;bottom:0;left:0;right:0;display:flex;justify-content:space-between;gap:8px;padding:8px 11px;background:linear-gradient(0deg,#11180ee8,#11180e00);color:#e0dfc8;font-size:10px;z-index:5}
+.scene-footer strong{color:#f0d38a}
+.battle-result{background:linear-gradient(135deg,#161d14,#101510);border-color:#4a5940}
+@keyframes unit-bob{0%,100%{translate:0 0}50%{translate:0 -4px}}
+@keyframes unit-bob-enemy{0%,100%{translate:0 0}50%{translate:0 4px}}
+@keyframes unit-lunge{from{translate:0 0}to{translate:15px -2px}}
+@keyframes impact-pulse{from{scale:.8;opacity:.55}to{scale:1.2;opacity:1}}
+@media(max-width:600px){.tactical-scene{min-height:350px}.scene-formation{width:45%;top:25%;bottom:12%;}.scene-unit{width:43px;height:61px}.scene-unit .unit-token{width:34px;height:34px;font-size:20px}.scene-unit .unit-hp{width:34px}.scene-unit .unit-caption{max-width:44px;font-size:8px}.fortress-silhouette{transform:scale(.7);transform-origin:top right}.scene-round{top:47px;font-size:9px}}
+
 </style>
 </head>
-<body>\n<div class="version-badge" id="versionBadge" aria-label="Game version">IRONBOUND v0.2.0</div>
+<body>\n<div class="version-badge" id="versionBadge" aria-label="Game version">IRONBOUND v0.3.0</div>
 <div class="wrap">
 <header>
   <div class="brand"><div class="sigil">⚔</div><div><div class="eyebrow">The Crown's Last Campaign</div><h1>IRONBOUND</h1><div class="subtitle">Gather. Forge. March. Take back the realm.</div></div></div>
@@ -223,7 +268,10 @@ function renderBattle(){
   stage.innerHTML='<div class="battle-head"><div><div class="section-kicker">'+(t.type==="plunder"?"Village Plunder":"Stronghold Raid")+'</div><h3>'+t.icon+' '+t.name+'</h3><p>'+t.desc+'</p></div><button class="secondary" data-battle-cancel>← Retreat</button></div><div class="battle-columns"><div class="battlefield"><div class="battlefield-banner friendly-banner">YOUR ARMY <span>Deploy in the green zone</span></div><div class="battle-grid">'+cells+'</div><div class="battlefield-banner enemy-banner">ORC DEFENDERS <span>Strength '+t.enemy+'</span></div><p class="battle-hint">Select a unit, then click a battlefield tile. Front-line troops protect your archers; siege engines are especially effective against strongholds.</p></div><aside class="deployment-panel"><h4>Command your army</h4>'+Object.keys(unitDefs).map(k=>'<button class="unit-pick '+(battle.selected===k?'picked':'')+'" data-pick-unit="'+k+'" '+(counts[k]===0?'disabled':'')+'><span class="unit-pick-icon">'+unitDefs[k].icon+'</span><span><strong>'+unitDefs[k].name+'</strong><small>'+counts[k]+' available · '+unitDefs[k].power+' power</small></span></button>').join("")+'<div class="deployment-summary">Units deployed <strong>'+battle.placements.length+'</strong></div><button class="gold ready-btn" data-battle-ready '+(battle.placements.length===0?'disabled':'')+'>⚔ Ready — Fight!</button></aside></div>';
  }else{
   const t=battle.target||regions[battle.index];
-  stage.innerHTML='<div class="battle-head"><div><div class="section-kicker">Battle simulation</div><h3>'+t.name+'</h3><p>Your orders are set. Watch the pixel armies clash; the result is simulated automatically.</p></div></div><div class="pixel-battlefield '+(t.type==="stronghold"?"pixel-fortress":"")+'" id="combatArena"><div class="pixel-trees"></div><div class="pixel-path"></div><div class="pixel-hud left">CROWN ARMY</div><div class="pixel-hud right">ORC DEFENDERS</div><div class="pixel-units">'+battle.placements.map((p,i)=>'<span class="pixel-soldier '+p.unit+'" style="--delay:'+(i*.09)+'s;--x:'+(8+(p.cell%5)*8)+'%;--y:'+(23+Math.floor(p.cell/5)*16)+'%"><i class="pixel-shadow"></i><i class="pixel-head"></i><i class="pixel-body"></i><i class="pixel-leg"></i><i class="pixel-weapon"></i></span>').join("")+'</div><div class="pixel-units enemy-units">'+Array.from({length:Math.max(5,Math.min(12,Math.ceil(t.enemy/13)))},(_,i)=>'<span class="pixel-soldier orc" style="--delay:'+(i*.12)+'s;--x:'+(62+(i%4)*7)+'%;--y:'+(24+Math.floor(i/4)*20)+'%"><i class="pixel-shadow"></i><i class="pixel-head"></i><i class="pixel-body"></i><i class="pixel-leg"></i><i class="pixel-weapon"></i></span>').join("")+'</div><div class="pixel-flash">✹</div><div class="pixel-caption">BATTLE IN PROGRESS · ORDERS LOCKED</div></div><div class="battle-result" id="battleResult">The formations advance…</div>';
+  const enemyCount=Math.max(5,Math.min(9,Math.ceil(t.enemy/16)));
+  const friendlyUnits=battle.placements.map((p,i)=>{const d=unitDefs[p.unit];const slot=[0,1,2,3,4,5,6,7,8][i%9];return '<div class="scene-unit '+(p.unit==="siege"?"siege-token":"")+(i%3===1?" attacking":"")+'" style="--delay:'+(i*.13)+'s;grid-column:'+(slot%3+1)+';grid-row:'+(Math.floor(slot/3)+1)+'"><div class="unit-token">'+d.icon+'</div><div class="unit-hp"><i></i></div><div class="unit-caption">'+d.name+'</div></div>'}).join("");
+  const enemyUnits=Array.from({length:enemyCount},(_,i)=>'<div class="scene-unit orc-token '+(i%3===0?"attacking":"")+'" style="--delay:'+(i*.16)+'s;grid-column:'+(i%3+1)+';grid-row:'+(Math.floor(i/3)+1)+'"><div class="unit-token">'+(i%3===0?"🪓":i%3===1?"🛡️":"⚔️")+'</div><div class="unit-hp"><i></i></div><div class="unit-caption">'+(i%3===0?"Raider":i%3===1?"Guard":"Berserker")+'</div></div>').join("");
+  stage.innerHTML='<div class="battle-head"><div><div class="section-kicker">TACTICAL ENGAGEMENT</div><h3>'+t.name+'</h3><p>Orders locked. Your formation meets the enemy across the field.</p></div><div class="stat"><small>Enemy strength</small><strong>'+t.enemy+'</strong></div></div><div class="tactical-scene '+(t.type==="stronghold"?"fortress-scene":"")+'" id="combatArena"><div class="tactical-terrain"></div><div class="terrain-rut"></div><div class="terrain-rock r1"></div><div class="terrain-rock r2"></div><div class="terrain-tree t1"></div><div class="terrain-tree t2"></div>'+(t.type==="stronghold"?'<div class="fortress-silhouette"></div><div class="fortress-gate"></div>':'')+'<div class="scene-topbar"><div class="scene-team">◆ CROWN FORCES</div><div class="scene-team orcs">ORC DEFENDERS ◆</div></div><div class="scene-round">⚔ &nbsp; CLASH OF THE FRONTIER &nbsp; ⚔</div><div class="scene-divider"></div><div class="scene-formation friendly-formation">'+friendlyUnits+'</div><div class="scene-formation enemy-formation">'+enemyUnits+'</div><div class="scene-impact">✦</div><div class="scene-footer"><span>FORMATION <strong>'+battle.placements.length+' deployed</strong></span><span>COMBAT <strong>IN PROGRESS</strong></span></div></div><div class="battle-result" id="battleResult"><strong>Engagement underway</strong><p>Shield lines collide as archers and siege crews support the advance…</p></div>';
  }
 }
 function resolveBattle(){
