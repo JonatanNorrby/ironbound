@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#10130f">
+<title>IRONBOUND — The War Effort</title>
+<style>
+:root{color-scheme:dark;--bg:#0d100d;--panel:#171c17;--panel2:#20271f;--line:#354033;--text:#e7e6d9;--muted:#9da695;--gold:#d8b66b;--green:#8eb078;--red:#c76c55;--blue:#91aebe;--radius:12px}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -20%,#2a3526 0,#111610 48%,var(--bg) 80%);color:var(--text);font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif;min-height:100vh}
+button{font:inherit;cursor:pointer;border:1px solid #526148;background:#38452f;color:#f4f0df;padding:9px 12px;border-radius:8px;transition:background .15s,border-color .15s,transform .15s}button:hover:not(:disabled){background:#4b5d3e;border-color:#91a777;transform:translateY(-1px)}button:disabled{opacity:.38;cursor:not-allowed}button.secondary{background:#242c23;border-color:#414c3b}button.gold{background:#66502b;border-color:#a58445}button.danger{background:#492a24;border-color:#805044}.wrap{max-width:1320px;margin:0 auto;padding:22px}
+header{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:12px 0 22px;border-bottom:1px solid var(--line);margin-bottom:20px}.brand{display:flex;align-items:center;gap:14px}.sigil{width:48px;height:48px;border:1px solid #8e7849;background:linear-gradient(135deg,#3b422e,#171c17);display:grid;place-items:center;border-radius:10px;color:var(--gold);font-size:26px;box-shadow:inset 0 0 20px #0008}.eyebrow{font-size:11px;letter-spacing:.22em;color:var(--gold);text-transform:uppercase;font-weight:800}.brand h1{font-size:28px;line-height:1.1;letter-spacing:.12em;margin:2px 0 0}.subtitle{color:var(--muted);font-size:13px}.header-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.resources{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-bottom:18px}.resource{background:linear-gradient(145deg,#20271e,#151a15);border:1px solid var(--line);border-radius:10px;padding:12px 14px;position:relative;overflow:hidden}.resource:after{content:"";position:absolute;left:0;bottom:0;width:var(--fill,35%);height:2px;background:var(--gold);opacity:.7}.res-top{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:12px}.res-icon{font-size:18px}.res-value{font-size:22px;font-weight:750;letter-spacing:.02em;margin:2px 0 0;font-variant-numeric:tabular-nums}.res-rate{font-size:11px;color:var(--green)}
+.war-banner{display:grid;grid-template-columns:1.3fr .7fr;gap:18px;padding:20px 22px;margin-bottom:18px;background:linear-gradient(110deg,#272d21,#171c17 65%,#251c16);border:1px solid #4c4c35;border-radius:var(--radius);position:relative;overflow:hidden}.war-banner:after{content:"";position:absolute;width:260px;height:260px;border:1px solid #9c834533;border-radius:50%;right:6%;top:-150px;box-shadow:0 0 0 22px #9c83430a,0 0 0 48px #9c83430a;pointer-events:none}.banner-copy{position:relative;z-index:1}.banner-copy h2{margin:4px 0 7px;font-size:23px}.banner-copy p{margin:0;color:#b4b9aa;max-width:650px}.banner-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;align-content:center;position:relative;z-index:1}.stat{border-left:2px solid #76613c;padding-left:12px}.stat small{display:block;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.12em}.stat strong{font-size:20px}.progress{height:6px;background:#0b0d0b;border-radius:10px;overflow:hidden;margin-top:12px;border:1px solid #394033}.progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,#9a793c,#e1c77e);transition:width .3s}
+.layout{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(300px,.85fr);gap:18px;align-items:start}.column{display:grid;gap:18px;min-width:0}.panel{background:linear-gradient(160deg,#1a201a,#141814);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}.panel-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:15px 17px;border-bottom:1px solid var(--line);background:#ffffff04}.panel-head h3{margin:0;font-size:15px;letter-spacing:.04em}.panel-head p{margin:2px 0 0;color:var(--muted);font-size:12px}.panel-body{padding:15px 17px}.section-kicker{font-size:10px;text-transform:uppercase;letter-spacing:.18em;color:var(--gold);font-weight:800}
+.building-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.building{border:1px solid #303a2e;background:#1c231c;border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:9px;min-width:0}.item-top{display:flex;gap:10px;align-items:flex-start}.item-icon{width:38px;height:38px;flex:0 0 38px;display:grid;place-items:center;border:1px solid #45513c;background:#293226;border-radius:8px;font-size:21px}.item-name{font-weight:700}.item-level{color:var(--gold);font-size:11px;letter-spacing:.04em}.item-desc{color:var(--muted);font-size:12px;line-height:1.4;min-height:33px}.item-footer{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto}.item-footer button{font-size:12px;padding:7px 10px;white-space:nowrap}.cost{font-size:11px;color:#c2c8b8;line-height:1.55}.cost span{white-space:nowrap}.unit-list,.research-list{display:grid;gap:9px}.unit,.tech{display:grid;grid-template-columns:40px minmax(0,1fr) auto;gap:10px;align-items:center;padding:10px;border:1px solid #303a2e;background:#1b211b;border-radius:9px}.unit .item-icon,.tech .item-icon{width:38px;height:38px}.unit p,.tech p{margin:2px 0;color:var(--muted);font-size:12px}.unit button,.tech button{font-size:12px;white-space:nowrap}.power{color:var(--gold);font-size:11px;font-weight:700}
+.region-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.region{border:1px solid #3a4334;border-radius:10px;padding:13px;background:linear-gradient(150deg,#20271f,#171c17);display:flex;flex-direction:column;gap:9px;min-width:0}.region.captured{border-color:#63774e;background:linear-gradient(150deg,#263324,#171d17)}.region.locked{opacity:.58}.region-top{display:flex;gap:10px;align-items:flex-start}.region-art{width:48px;height:48px;flex:0 0 48px;border-radius:9px;border:1px solid #4c5139;background:#2a3025;display:grid;place-items:center;font-size:26px}.region h4{margin:0;font-size:14px}.region .region-desc{font-size:12px;color:var(--muted);margin-top:2px}.region-meta{display:flex;justify-content:space-between;gap:8px;font-size:11px;color:#c1c7b8}.region button{width:100%;font-size:12px}.badge{font-size:10px;text-transform:uppercase;letter-spacing:.12em;font-weight:800;color:var(--gold)}.badge.success{color:#a6cb8c}.badge.lock{color:#888e81}
+.actions{display:flex;gap:8px;flex-wrap:wrap}.actions button{flex:1;min-width:120px}.log{display:flex;flex-direction:column;gap:8px;max-height:270px;overflow:auto}.log-entry{font-size:12px;color:#b7bead;border-left:2px solid #5a664b;padding:2px 0 2px 10px}.log-entry strong{color:#e3d6ae;font-weight:650}.log-entry .time{color:#7e8876;font-size:10px;margin-right:6px}.log-entry.warn{border-color:var(--red)}.log-entry.good{border-color:var(--green)}.empty{font-size:12px;color:var(--muted);padding:12px 0}.footnote{font-size:11px;color:#7f887a;text-align:center;margin:20px 0 8px}.toast{position:fixed;right:20px;bottom:20px;background:#303a2a;border:1px solid #71835a;border-radius:10px;padding:12px 16px;box-shadow:0 12px 40px #0009;max-width:320px;z-index:10;animation:rise .2s ease-out}@keyframes rise{from{transform:translateY(8px);opacity:0}to{transform:translateY(0);opacity:1}}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.war-banner{grid-template-columns:1fr}.banner-stats{grid-template-columns:repeat(4,1fr)}}@media(max-width:620px){.wrap{padding:13px}.brand h1{font-size:22px}.sigil{width:42px;height:42px}.subtitle{display:none}.resources{grid-template-columns:repeat(2,minmax(0,1fr))}.resource:last-child{grid-column:span 2}.res-value{font-size:20px}.banner-stats{grid-template-columns:repeat(2,1fr)}.building-grid,.region-list{grid-template-columns:1fr}.header-actions button{font-size:12px;padding:7px 9px}.war-banner{padding:16px}.banner-copy h2{font-size:20px}.unit,.tech{grid-template-columns:38px minmax(0,1fr)}.unit button,.tech button{grid-column:2;justify-self:start}.item-desc{min-height:0}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="brand"><div class="sigil">⚔</div><div><div class="eyebrow">The Crown's Last Campaign</div><h1>IRONBOUND</h1><div class="subtitle">Gather. Forge. March. Take back the realm.</div></div></div>
+  <div class="header-actions"><button class="secondary" id="saveBtn">Save now</button><button class="secondary" id="resetBtn">Reset campaign</button></div>
+</header>
+<section class="resources" id="resources"></section>
+<section class="war-banner">
+  <div class="banner-copy"><div class="eyebrow">War Council Dispatch</div><h2 id="dispatchTitle">The realm is not yet lost.</h2><p id="dispatchText">Our scouts report orc banners on the horizon. Turn timber, iron and harvest into a fighting force. The frontier will not reclaim itself.</p><div class="progress"><span id="warProgress"></span></div></div>
+  <div class="banner-stats"><div class="stat"><small>Territories secured</small><strong id="territoryStat">0 / 6</strong></div><div class="stat"><small>Army strength</small><strong id="armyStat">24</strong></div><div class="stat"><small>Production bonus</small><strong id="bonusStat">+0%</strong></div><div class="stat"><small>Campaign status</small><strong id="statusStat">Gathering</strong></div></div>
+</section>
+<div class="layout">
+  <div class="column">
+    <section class="panel">
+      <div class="panel-head"><div><h3>01 / The Homefront</h3><p>Build the engine that keeps the war moving.</p></div><span class="section-kicker">Industry</span></div>
+      <div class="panel-body"><div class="building-grid" id="buildings"></div></div>
+    </section>
+    <section class="panel">
+      <div class="panel-head"><div><h3>02 / The War Table</h3><p>Choose a frontier. Every campaign consumes supplies.</p></div><span class="section-kicker">Frontline</span></div>
+      <div class="panel-body"><div class="region-list" id="regions"></div></div>
+    </section>
+    <section class="panel">
+      <div class="panel-head"><div><h3>03 / Field Orders</h3><p>Small actions can bridge a shortage when time is short.</p></div><span class="section-kicker">Clicker</span></div>
+      <div class="panel-body"><div class="actions"><button id="chopBtn">🪓 Chop timber <strong>+8 wood</strong></button><button id="forageBtn">🌾 Forage provisions <strong>+8 food</strong></button><button id="mineBtn">⛏ Scavenge iron <strong>+3 iron</strong></button></div></div>
+    </section>
+  </div>
+  <div class="column">
+    <section class="panel">
+      <div class="panel-head"><div><h3>04 / Muster the Army</h3><p>Recruitment converts supplies into military power.</p></div><span class="section-kicker">Forces</span></div>
+      <div class="panel-body"><div class="unit-list" id="units"></div><div style="margin-top:13px;padding:11px;background:#0d110d;border:1px solid #30392d;border-radius:8px;display:flex;justify-content:space-between;gap:12px"><span style="font-size:12px;color:var(--muted)">Effective army strength</span><strong id="powerDetail" style="color:var(--gold)">24</strong></div></div>
+    </section>
+    <section class="panel">
+      <div class="panel-head"><div><h3>05 / Military Research</h3><p>Permanent improvements to industry and doctrine.</p></div><span class="section-kicker">Doctrine</span></div>
+      <div class="panel-body"><div class="research-list" id="research"></div></div>
+    </section>
+    <section class="panel">
+      <div class="panel-head"><div><h3>06 / Dispatches</h3><p>Reports from the workshops and the front.</p></div><button class="secondary" id="clearLogBtn" style="font-size:11px;padding:5px 8px">Clear</button></div>
+      <div class="panel-body"><div class="log" id="log"></div></div>
+    </section>
+  </div>
+</div>
+<div class="footnote">IRONBOUND · A single-player idle war effort · Progress saves in this browser</div>
+</div>
+<script>
+(function(){
+"use strict";
+const SAVE_KEY="ironbound-save-v1";
+const resourceMeta={
+ wood:{name:"Timber",icon:"🪵",color:"#b99b68"},
+ stone:{name:"Stone",icon:"🪨",color:"#a4aaa3"},
+ iron:{name:"Iron",icon:"⛓️",color:"#aab8c0"},
+ food:{name:"Provisions",icon:"🌾",color:"#9ab579"},
+ gold:{name:"Crown",icon:"🪙",color:"#d8b66b"}
+};
+const buildingDefs={
+ lumber:{name:"Lumber Camp",icon:"🪓",desc:"Felled timber for construction and siege engines.",base:{wood:35,stone:10},rate:{wood:1.35},unit:"wood"},
+ farm:{name:"Homestead Farms",icon:"🌾",desc:"Feed workers and keep the army on the march.",base:{wood:30,stone:8},rate:{food:1.75},unit:"food"},
+ quarry:{name:"Stone Quarry",icon:"⛏️",desc:"Cut stone for stronger fortifications and workshops.",base:{wood:30,iron:5},rate:{stone:0.9},unit:"stone"},
+ ironmine:{name:"Iron Mine",icon:"⚒️",desc:"Extract the metal that arms the Crown's soldiers.",base:{wood:40,stone:20},rate:{iron:0.7},unit:"iron"},
+ market:{name:"Trade Post",icon:"🏴",desc:"Trade surplus goods for coin and campaign wages.",base:{wood:50,stone:25},rate:{gold:0.45},unit:"gold"},
+ barracks:{name:"Barracks",icon:"🛡️",desc:"Drill the ranks. Each upgrade adds 5% army strength.",base:{wood:70,stone:30,iron:20},rate:{},unit:"army"}
+};
+const unitDefs={
+ militia:{name:"Militia",icon:"🗡️",desc:"Cheap levies, useful in numbers.",power:3,cost:{food:15,wood:12,gold:3}},
+ archer:{name:"Longbow Company",icon:"🏹",desc:"Disciplined volleys break enemy lines.",power:7,cost:{food:18,wood:18,iron:5,gold:8}},
+ knight:{name:"Crown Knights",icon:"🐎",desc:"Armoured veterans with decisive impact.",power:18,cost:{food:25,iron:20,gold:20}},
+ siege:{name:"Siege Engine",icon:"🛞",desc:"Heavy field artillery for fortified enemies.",power:40,cost:{wood:60,stone:25,iron:35,gold:35}}
+};
+const regions=[
+ {name:"Greenfields",icon:"🌲",enemy:25,desc:"The farms are burning. Secure the grain road.",reward:{wood:45,food:65,gold:25},bonus:"A safe food route"},
+ {name:"Ashen Ford",icon:"🌉",enemy:60,desc:"A river crossing guarded by raider warbands.",reward:{wood:55,iron:35,gold:35},bonus:"Trade caravans return"},
+ {name:"Blackpine Forest",icon:"🌲",enemy:110,desc:"Orc scouts gather beneath the black boughs.",reward:{wood:80,stone:40,food:60},bonus:"Timber supply secured"},
+ {name:"The Broken Hills",icon:"⛰️",enemy:190,desc:"Iron-rich ridges have fallen to the clans.",reward:{stone:100,iron:80,gold:50},bonus:"The mines are ours"},
+ {name:"Ironhold Pass",icon:"🏰",enemy:300,desc:"The old fortress stands behind a wall of steel.",reward:{iron:100,food:100,gold:90},bonus:"The mountain road opens"},
+ {name:"The Warlord's Gate",icon:"🔥",enemy:450,desc:"The orc warlord waits beneath his war banners.",reward:{wood:150,stone:150,iron:150,food:150,gold:150},bonus:"The realm is liberated"}
+];
+const researchDefs={
+ tools:{name:"Improved Tools",icon:"🔨",desc:"+15% production from all industry.",cost:{wood:80,iron:20,gold:40}},
+ drills:{name:"Drilled Ranks",icon:"🎖️",desc:"+20% effective army strength.",cost:{food:80,iron:30,gold:60}},
+ supply:{name:"Supply Trains",icon:"🐂",desc:"Campaigns consume 25% fewer supplies.",cost:{wood:100,stone:60,gold:70}},
+ siegecraft:{name:"Siegecraft",icon:"💥",desc:"Siege engines gain +40% power.",cost:{wood:140,iron:70,gold:100}},
+ stewardship:{name:"Crown Stewardship",icon:"📜",desc:"+10% production and better territory spoils.",cost:{stone:100,food:100,gold:120}}
+};
+const initialState=()=>({
+ resources:{wood:95,stone:50,iron:35,food:100,gold:70},
+ buildings:{lumber:1,farm:1,quarry:0,ironmine:0,market:0,barracks:1},
+ army:{militia:8,archer:0,knight:0,siege:0},
+ research:{tools:false,drills:false,supply:false,siegecraft:false,stewardship:false},
+ captured:[],logs:[],lastTick:Date.now(),createdAt:Date.now()
+});
+let state;
+function load(){
+ try{
+  const raw=localStorage.getItem(SAVE_KEY);
+  if(!raw){state=initialState();addLog("The council convenes. The Crown's war effort begins.","good");return}
+  const parsed=JSON.parse(raw), fresh=initialState();
+  state={...fresh,...parsed,resources:{...fresh.resources,...parsed.resources},buildings:{...fresh.buildings,...parsed.buildings},army:{...fresh.army,...parsed.army},research:{...fresh.research,...parsed.research},captured:Array.isArray(parsed.captured)?parsed.captured:[],logs:Array.isArray(parsed.logs)?parsed.logs:[]};
+  const elapsed=Math.max(0,Math.min(8*60*60,(Date.now()-(Number(state.lastTick)||Date.now()))/1000));
+  if(elapsed>5){const rates=production();Object.keys(rates).forEach(k=>state.resources[k]+=rates[k]*elapsed);addLog("Returning after "+formatDuration(elapsed)+": your workshops produced supplies while you were away.","good")}
+  state.lastTick=Date.now();
+ }catch(e){state=initialState();addLog("A damaged save was replaced with a fresh campaign.","warn")}
+}
+function save(){state.lastTick=Date.now();try{localStorage.setItem(SAVE_KEY,JSON.stringify(state));toast("Campaign saved in this browser.")}catch(e){toast("Could not save. Check browser storage settings.")}}
+function addLog(message,type){if(!state.logs)state.logs=[];state.logs.unshift({message:message,type:type||"",time:Date.now()});state.logs=state.logs.slice(0,45)}
+function toast(message){const old=document.querySelector(".toast");if(old)old.remove();const el=document.createElement("div");el.className="toast";el.textContent=message;document.body.appendChild(el);setTimeout(()=>el.remove(),2600)}
+function formatNumber(n){if(n>=1000000)return (n/1000000).toFixed(2)+"m";if(n>=10000)return (n/1000).toFixed(1)+"k";return Math.floor(n).toLocaleString("en-US")}
+function formatRate(n){return (n>=0?"+":"")+n.toFixed(1)+"/s"}
+function formatDuration(s){const h=Math.floor(s/3600),m=Math.floor((s%3600)/60);return h>0?h+"h "+m+"m":m+"m"}
+function costFor(id){const def=buildingDefs[id],level=state.buildings[id]||0,mult=Math.pow(1.42,level),out={};Object.keys(def.base).forEach(k=>out[k]=Math.ceil(def.base[k]*mult));return out}
+function canAfford(cost){return Object.keys(cost).every(k=>state.resources[k]>=cost[k])}
+function spend(cost){if(!canAfford(cost))return false;Object.keys(cost).forEach(k=>state.resources[k]-=cost[k]);return true}
+function costText(cost){return Object.keys(cost).map(k=>"<span>"+resourceMeta[k].icon+" "+formatNumber(cost[k])+"</span>").join(" · ")}
+function production(){
+ const rates={wood:0,stone:0,iron:0,food:0,gold:0};
+ Object.keys(buildingDefs).forEach(id=>{const level=state.buildings[id]||0;Object.keys(buildingDefs[id].rate).forEach(k=>rates[k]+=buildingDefs[id].rate[k]*level)});
+ let mult=1+(state.captured.length*.07);
+ if(state.research.tools)mult*=1.15;
+ if(state.research.stewardship)mult*=1.10;
+ Object.keys(rates).forEach(k=>rates[k]*=mult);
+ return rates;
+}
+function armyPower(){
+ let p=0;Object.keys(unitDefs).forEach(k=>{let v=unitDefs[k].power;if(k==="siege"&&state.research.siegecraft)v*=1.4;p+=v*(state.army[k]||0)});
+ p*=1+Math.max(0,(state.buildings.barracks||1)-1)*.05;
+ if(state.research.drills)p*=1.2;
+ return Math.floor(p);
+}
+function campaignCost(){const m=state.research.supply?.75:1;return {food:Math.ceil(35*m),wood:Math.ceil(20*m),iron:Math.ceil(10*m)}}
+function canRecruit(id){return canAfford(unitDefs[id].cost)&&(id==="militia"||(state.buildings.barracks||0)>=1)}
+function build(id){
+ const cost=costFor(id);if(!spend(cost)){toast("Not enough resources for that upgrade.");return}
+ state.buildings[id]=(state.buildings[id]||0)+1;
+ addLog("<strong>"+buildingDefs[id].name+"</strong> upgraded to level "+state.buildings[id]+".","good");
+ render();persistQuiet();
+}
+function recruit(id){
+ if(!canRecruit(id)){toast("Not enough resources to recruit that unit.");return}
+ spend(unitDefs[id].cost);state.army[id]=(state.army[id]||0)+1;
+ addLog("Recruited one <strong>"+unitDefs[id].name+"</strong> for the Crown.","good");render();persistQuiet();
+}
+function research(id){
+ if(state.research[id])return;
+ if(!canAfford(researchDefs[id].cost)){toast("The treasury cannot cover this research.");return}
+ spend(researchDefs[id].cost);state.research[id]=true;
+ addLog("Research complete: <strong>"+researchDefs[id].name+"</strong>.","good");render();persistQuiet();
+}
+function campaign(index){
+ const region=regions[index];if(state.captured.includes(index))return;
+ if(index>0&&!state.captured.includes(index-1)){toast("Secure the previous region first.");return}
+ const cost=campaignCost();if(!spend(cost)){toast("The army needs more campaign supplies.");return}
+ const power=armyPower(), enemy=region.enemy;
+ if(power<enemy){
+  const loss=state.army.militia>0?1:0;
+  if(loss)state.army.militia--;
+  addLog("Campaign at <strong>"+region.name+"</strong> repelled. Army strength "+power+" / "+enemy+". "+(loss?"One militia unit was lost.":"The force withdrew intact.")+" Rebuild and try again.","warn");
+  toast("Campaign repelled — strengthen the army first.");
+ }else{
+  state.captured.push(index);
+  Object.keys(region.reward).forEach(k=>state.resources[k]+=region.reward[k]*(state.research.stewardship?1.1:1));
+  addLog("<strong>"+region.name+" secured!</strong> "+region.bonus+". Spoils delivered to the homefront.","good");
+  if(state.captured.length===regions.length){addLog("<strong>The orc warlord has fallen.</strong> The realm is liberated — the campaign continues if you want to build your strength.","good");toast("Victory! The realm is liberated.");}
+  else{toast(region.name+" secured. The frontier advances.");}
+ }
+ render();persistQuiet();
+}
+function gather(k,amount,label){state.resources[k]+=amount;addLog("Field order completed: "+label+" (+"+amount+" "+resourceMeta[k].name.toLowerCase()+").");render();persistQuiet()}
+function renderResources(){
+ const rates=production();
+ document.getElementById("resources").innerHTML=Object.keys(resourceMeta).map(k=>{
+  const m=resourceMeta[k],v=state.resources[k],rate=rates[k];
+  return '<div class="resource" style="--fill:'+Math.min(100,Math.max(6,v/5))+'%"><div class="res-top"><span class="res-icon">'+m.icon+'</span><span>'+m.name+'</span></div><div class="res-value">'+formatNumber(v)+'</div><div class="res-rate">'+formatRate(rate)+'</div></div>';
+ }).join("");
+}
+function renderBuildings(){
+ document.getElementById("buildings").innerHTML=Object.keys(buildingDefs).map(id=>{
+  const d=buildingDefs[id],level=state.buildings[id]||0,cost=costFor(id),rate=Object.keys(d.rate).map(k=>formatRate(d.rate[k])+" "+resourceMeta[k].name.toLowerCase()).join(", ");
+  const effect=id==="barracks"?"+"+Math.max(0,level-1)*5+"% army strength":rate+" per level";
+  return '<div class="building"><div class="item-top"><div class="item-icon">'+d.icon+'</div><div><div class="item-name">'+d.name+'</div><div class="item-level">LEVEL '+level+'</div></div></div><div class="item-desc">'+d.desc+'</div><div class="power">'+effect+'</div><div class="cost">Cost: '+costText(cost)+'</div><div class="item-footer"><span class="cost">Next upgrade</span><button data-build="'+id+'" '+(canAfford(cost)?"":"disabled")+'>'+ (id==="barracks"?"Upgrade":"Build / Upgrade")+'</button></div></div>';
+ }).join("");
+}
+function renderUnits(){
+ document.getElementById("units").innerHTML=Object.keys(unitDefs).map(id=>{
+  const d=unitDefs[id],locked=id!=="militia"&&(state.buildings.barracks||0)<1;
+  return '<div class="unit"><div class="item-icon">'+d.icon+'</div><div><div class="item-name">'+d.name+' <span class="power">×'+(state.army[id]||0)+'</span></div><p>'+d.desc+'</p><div class="cost">Power '+d.power+' · '+costText(d.cost)+'</div></div><button data-recruit="'+id+'" '+(canRecruit(id)?"":"disabled")+'>'+(locked?"Locked":"Recruit")+'</button></div>';
+ }).join("");
+ document.getElementById("powerDetail").textContent=armyPower();
+}
+function renderResearch(){
+ document.getElementById("research").innerHTML=Object.keys(researchDefs).map(id=>{
+  const d=researchDefs[id],done=state.research[id];
+  return '<div class="tech"><div class="item-icon">'+d.icon+'</div><div><div class="item-name">'+d.name+'</div><p>'+d.desc+'</p><div class="cost">'+(done?"Completed":costText(d.cost))+'</div></div><button data-research="'+id+'" '+(done||!canAfford(d.cost)?"disabled":"")+'>'+(done?"Researched":"Research")+'</button></div>';
+ }).join("");
+}
+function renderRegions(){
+ document.getElementById("regions").innerHTML=regions.map((r,i)=>{
+  const captured=state.captured.includes(i),unlocked=i===0||state.captured.includes(i-1),power=armyPower(),cost=campaignCost(),afford=canAfford(cost);
+  let badge=captured?'<span class="badge success">✓ Secured</span>':unlocked?'<span class="badge">Frontier</span>':'<span class="badge lock">🔒 Locked</span>';
+  let button=captured?'<button disabled>Territory secured</button>':!unlocked?'<button disabled>Secure previous region</button>':'<button class="'+(power>=r.enemy?"gold":"danger")+'" data-campaign="'+i+'" '+(afford?"":"disabled")+'>'+(power>=r.enemy?"Launch campaign":"Outmatched — risk defeat")+'</button>';
+  return '<div class="region '+(captured?"captured ":"")+(unlocked?"":"locked")+'"><div class="region-top"><div class="region-art">'+r.icon+'</div><div><h4>'+r.name+'</h4><div class="region-desc">'+r.desc+'</div><div style="margin-top:5px">'+badge+'</div></div></div><div class="region-meta"><span>Orc strength</span><strong>'+r.enemy+'</strong></div><div class="region-meta"><span>Your army</span><strong style="color:'+(power>=r.enemy?"var(--green)":"var(--red)")+'">'+power+'</strong></div><div class="cost">Spoils: '+costText(r.reward)+'</div><div class="cost">Supply cost: '+costText(cost)+'</div>'+button+'</div>';
+ }).join("");
+}
+function renderLog(){
+ const el=document.getElementById("log");
+ el.innerHTML=state.logs.length?state.logs.slice(0,25).map(l=>'<div class="log-entry '+(l.type||"")+'"><span class="time">'+new Date(l.time).toLocaleTimeString([],{hour:"2-digit",minute:"2-digit"})+'</span>'+l.message+'</div>').join(""):'<div class="empty">No dispatches yet.</div>';
+}
+function renderBanner(){
+ const n=state.captured.length,p=armyPower(),next=regions[n];
+ document.getElementById("territoryStat").textContent=n+" / "+regions.length;
+ document.getElementById("armyStat").textContent=p;
+ document.getElementById("bonusStat").textContent="+"+(n*7+(state.research.tools?15:0)+(state.research.stewardship?10:0))+"%";
+ document.getElementById("statusStat").textContent=n===regions.length?"Victorious":n===0?"Gathering":"Advancing";
+ document.getElementById("warProgress").style.width=(n/regions.length*100)+"%";
+ document.getElementById("dispatchTitle").textContent=n===regions.length?"The realm is liberated.":n===0?"The realm is not yet lost.":next.name+" awaits.";
+ document.getElementById("dispatchText").textContent=n===regions.length?"The orc warlord is defeated. Keep expanding your economy, muster elite forces, and perfect the Crown's war machine.":n===0?"Our scouts report orc banners on the horizon. Turn timber, iron and harvest into a fighting force. The frontier will not reclaim itself.":"The banners of the Crown now fly over "+state.captured.map(i=>regions[i].name).join(", ")+". Secure the next frontier, reinforce your supply lines, and keep the army fed.";
+}
+function render(){renderResources();renderBuildings();renderUnits();renderResearch();renderRegions();renderLog();renderBanner()}
+function persistQuiet(){state.lastTick=Date.now();try{localStorage.setItem(SAVE_KEY,JSON.stringify(state))}catch(e){}}
+function tick(){
+ const now=Date.now(),elapsed=Math.max(0,Math.min(5,(now-(state.lastTick||now))/1000));
+ if(elapsed>0){const rates=production();Object.keys(rates).forEach(k=>state.resources[k]=Math.min(999999999,state.resources[k]+rates[k]*elapsed));state.lastTick=now;}
+ renderResources();renderBuildings();renderUnits();renderResearch();renderRegions();renderBanner();
+ if(Math.floor(now/10000)!==Math.floor((now-1000)/10000))persistQuiet();
+}
+document.addEventListener("click",function(e){
+ const b=e.target.closest("button");if(!b)return;
+ if(b.dataset.build)build(b.dataset.build);
+ if(b.dataset.recruit)recruit(b.dataset.recruit);
+ if(b.dataset.research)research(b.dataset.research);
+ if(b.dataset.campaign!==undefined)campaign(Number(b.dataset.campaign));
+});
+document.getElementById("saveBtn").addEventListener("click",save);
+document.getElementById("resetBtn").addEventListener("click",function(){
+ if(confirm("Reset the entire IRONBOUND campaign? This deletes this browser's saved progress.")){
+  localStorage.removeItem(SAVE_KEY);state=initialState();addLog("A new campaign begins under the Crown's banner.","good");render();persistQuiet();toast("Campaign reset.");
+ }
+});
+document.getElementById("chopBtn").addEventListener("click",()=>gather("wood",8,"chopping timber"));
+document.getElementById("forageBtn").addEventListener("click",()=>gather("food",8,"foraging provisions"));
+document.getElementById("mineBtn").addEventListener("click",()=>gather("iron",3,"scavenging iron"));
+document.getElementById("clearLogBtn").addEventListener("click",()=>{state.logs=[];renderLog();persistQuiet()});
+window.addEventListener("beforeunload",persistQuiet);
+document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="hidden")persistQuiet()});
+load();render();setInterval(tick,1000);
+})();
+</script>
+</body>
+</html>
