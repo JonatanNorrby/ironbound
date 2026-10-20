@@ -25,9 +25,10 @@ header{display:flex;align-items:center;justify-content:space-between;gap:20px;pa
 .tab-content{display:none}.tab-content.active{display:block;animation:tab-in .16s ease-out}
 @keyframes tab-in{from{opacity:.6;transform:translateY(3px)}to{opacity:1;transform:translateY(0)}}
 .tab-stack{display:grid;gap:18px}
-.map-shell{position:relative;min-height:430px;overflow:hidden;border:1px solid #51553c;border-radius:12px;background:#1a251b;isolation:isolate}
-.map-shell:before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 18% 20%,#3c4c2b88,transparent 35%),radial-gradient(ellipse at 78% 70%,#4d392c88,transparent 30%),repeating-linear-gradient(35deg,transparent 0 31px,#d1c68a09 32px 33px);z-index:-1}
-.map-art{position:absolute;inset:0;width:100%;height:100%;opacity:.88}
+.map-shell{position:relative;min-height:430px;overflow:hidden;border:1px solid #766346;border-radius:12px;background:#1a251b url("./assets/map-background.png") center center / cover no-repeat;isolation:isolate;box-shadow:inset 0 0 0 1px #0b0e0b,0 8px 24px #0004}
+.map-shell:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#10140c1c,#10140c45);pointer-events:none;z-index:0}
+#mapShell>svg.map-art{display:none}
+.map-route-overlay .map-art{position:absolute;inset:0;width:100%;height:100%;opacity:.9}
 .map-node{position:absolute;z-index:2;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:5px;background:transparent;border:0;padding:0;color:var(--text);min-width:82px;max-width:130px;white-space:normal}
 .map-node:hover:not(:disabled){background:transparent;border-color:transparent;transform:translate(-50%,-50%) scale(1.04)}
 .map-node:disabled{opacity:.8}
