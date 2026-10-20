@@ -12,7 +12,7 @@
 </style>
 </head>
 <body>
-<div class="version-badge" id="versionBadge">v0.1.5</div>
+<div class="version-badge" id="versionBadge">v0.1.6</div>
 <div class="app">
 <header class="topbar"><div class="brand"><div class="sigil">✦</div><div><h1>GRAVEBOUND</h1><p>THE ETERNAL HUNT</p></div></div><div class="top-actions"></div></header>
 <section class="stats">
@@ -95,6 +95,23 @@ modal=false;$('upgradeModal').classList.remove('show');if(xp>=xpNeed)gainXp(0);e
 function update(dt){if(paused||ended||modal)return;dt=Math.min(dt,.04)*speed;elapsed+=dt;frame++;const p=g.player;p.iframes=Math.max(0,p.iframes-dt);spawnClock+=dt;const spawnRate=Math.max(.16,.8-elapsed*.0025);while(spawnClock>spawnRate){spawnClock-=spawnRate;spawnEnemy();if(elapsed>35&&Math.random()<.24)spawnEnemy()}
 if(elapsed>60&&!boss){spawnBoss()}if(boss&&!boss.dead){boss.attack-=dt;if(boss.attack<=0){boss.attack=3.3;for(let i=0;i<8;i++){const a=i*Math.PI/4;particles.push({x:boss.x,y:boss.y,vx:Math.cos(a)*120,vy:Math.sin(a)*120,life:1.2,max:1.2,r:5,color:'#ef5570',hostile:true})}}}
 attack(dt);
+// Gentle automatic evasion: when enemies close in, steer toward the safest nearby space.
+let dodgeX=0,dodgeY=0;
+for(const e of enemies){
+ const dx=p.x-e.x,dy=p.y-e.y,d=Math.hypot(dx,dy)||.001,range=112;
+ if(d<range){const urgency=(range-d)/range;const weight=urgency*urgency*(e===boss?1.35:1);dodgeX+=dx/d*weight;dodgeY+=dy/d*weight}
+}
+for(const shot of particles){
+ if(!shot.hostile)continue;
+ const dx=p.x-shot.x,dy=p.y-shot.y,d=Math.hypot(dx,dy)||.001,range=76;
+ if(d<range){const urgency=(range-d)/range;const weight=urgency*urgency*1.8;dodgeX+=dx/d*weight;dodgeY+=dy/d*weight}
+}
+const dodgeLen=Math.hypot(dodgeX,dodgeY);
+if(dodgeLen>.08){
+ const dodgeSpeed=105*Math.min(1,dodgeLen);
+ p.x=clamp(p.x+dodgeX/dodgeLen*dodgeSpeed*dt,24,g.w-24);
+ p.y=clamp(p.y+dodgeY/dodgeLen*dodgeSpeed*dt,24,g.h-24);
+}
 for(let i=enemies.length-1;i>=0;i--){const e=enemies[i];e.hit=Math.max(0,e.hit-dt);if(e.hp<=0){if(e===boss){boss=null;$('bossbar').classList.remove('show');log('The Warden is broken. A new night awaits.','good');runEcho+=35;floatText(p.x,p.y-50,'WARDEN SLAIN +35 ECHOES','#ffca81');openUpgrade(true)}enemies.splice(i,1);continue}
 const dx=p.x-e.x,dy=p.y-e.y,d=Math.hypot(dx,dy)||1;e.x+=dx/d*e.spd*dt;e.y+=dy/d*e.spd*dt;e.phase+=dt*2;if(d<p.radius+e.r&&p.iframes<=0){p.hp-=e.damage;p.iframes=.55;addParticle(p.x,p.y,'#ff6178',8,2);floatText(p.x,p.y-20,'-'+e.damage,'#ff7283');if(p.hp<=0){p.hp=0;finish();break}}}
 for(let i=projectiles.length-1;i>=0;i--){const b=projectiles[i];b.x+=b.vx*dt;b.y+=b.vy*dt;b.life-=dt;let remove=b.life<=0||b.x<0||b.x>g.w||b.y<0||b.y>g.h;if(!remove)for(const e of enemies){if(!b.hit.has(e)&&Math.hypot(e.x-b.x,e.y-b.y)<e.r+b.r){b.hit.add(e);const dead=damageEnemy(e,b.damage,b.color);if(dead&&e===boss){boss=null;$('bossbar').classList.remove('show');runEcho+=35;openUpgrade(true)}if(b.pierce<=0){remove=true;break}else b.pierce--}}if(remove)projectiles.splice(i,1)}
