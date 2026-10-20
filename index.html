@@ -17,6 +17,33 @@ header{display:flex;align-items:center;justify-content:space-between;gap:20px;pa
 .region-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.region{border:1px solid #3a4334;border-radius:10px;padding:13px;background:linear-gradient(150deg,#20271f,#171c17);display:flex;flex-direction:column;gap:9px;min-width:0}.region.captured{border-color:#63774e;background:linear-gradient(150deg,#263324,#171d17)}.region.locked{opacity:.58}.region-top{display:flex;gap:10px;align-items:flex-start}.region-art{width:48px;height:48px;flex:0 0 48px;border-radius:9px;border:1px solid #4c5139;background:#2a3025;display:grid;place-items:center;font-size:26px}.region h4{margin:0;font-size:14px}.region .region-desc{font-size:12px;color:var(--muted);margin-top:2px}.region-meta{display:flex;justify-content:space-between;gap:8px;font-size:11px;color:#c1c7b8}.region button{width:100%;font-size:12px}.badge{font-size:10px;text-transform:uppercase;letter-spacing:.12em;font-weight:800;color:var(--gold)}.badge.success{color:#a6cb8c}.badge.lock{color:#888e81}
 .actions{display:flex;gap:8px;flex-wrap:wrap}.actions button{flex:1;min-width:120px}.log{display:flex;flex-direction:column;gap:8px;max-height:270px;overflow:auto}.log-entry{font-size:12px;color:#b7bead;border-left:2px solid #5a664b;padding:2px 0 2px 10px}.log-entry strong{color:#e3d6ae;font-weight:650}.log-entry .time{color:#7e8876;font-size:10px;margin-right:6px}.log-entry.warn{border-color:var(--red)}.log-entry.good{border-color:var(--green)}.empty{font-size:12px;color:var(--muted);padding:12px 0}.footnote{font-size:11px;color:#7f887a;text-align:center;margin:20px 0 8px}.toast{position:fixed;right:20px;bottom:20px;background:#303a2a;border:1px solid #71835a;border-radius:10px;padding:12px 16px;box-shadow:0 12px 40px #0009;max-width:320px;z-index:10;animation:rise .2s ease-out}@keyframes rise{from{transform:translateY(8px);opacity:0}to{transform:translateY(0);opacity:1}}
 @media(max-width:900px){.layout{grid-template-columns:1fr}.war-banner{grid-template-columns:1fr}.banner-stats{grid-template-columns:repeat(4,1fr)}}@media(max-width:620px){.wrap{padding:13px}.brand h1{font-size:22px}.sigil{width:42px;height:42px}.subtitle{display:none}.resources{grid-template-columns:repeat(2,minmax(0,1fr))}.resource:last-child{grid-column:span 2}.res-value{font-size:20px}.banner-stats{grid-template-columns:repeat(2,1fr)}.building-grid,.region-list{grid-template-columns:1fr}.header-actions button{font-size:12px;padding:7px 9px}.war-banner{padding:16px}.banner-copy h2{font-size:20px}.unit,.tech{grid-template-columns:38px minmax(0,1fr)}.unit button,.tech button{grid-column:2;justify-self:start}.item-desc{min-height:0}}
+
+.tabs{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 18px;padding:7px;background:#121711;border:1px solid var(--line);border-radius:12px}
+.tab-btn{background:transparent;border-color:transparent;color:var(--muted);padding:10px 15px;font-weight:700;font-size:13px;display:flex;align-items:center;gap:8px}
+.tab-btn:hover:not(:disabled){background:#252d22;border-color:#394532;transform:none}
+.tab-btn[aria-selected="true"]{background:#34432d;border-color:#657b4e;color:#f4f0df;box-shadow:inset 0 -2px #d8b66b}
+.tab-content{display:none}.tab-content.active{display:block;animation:tab-in .16s ease-out}
+@keyframes tab-in{from{opacity:.6;transform:translateY(3px)}to{opacity:1;transform:translateY(0)}}
+.tab-stack{display:grid;gap:18px}
+.map-shell{position:relative;min-height:430px;overflow:hidden;border:1px solid #51553c;border-radius:12px;background:#1a251b;isolation:isolate}
+.map-shell:before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 18% 20%,#3c4c2b88,transparent 35%),radial-gradient(ellipse at 78% 70%,#4d392c88,transparent 30%),repeating-linear-gradient(35deg,transparent 0 31px,#d1c68a09 32px 33px);z-index:-1}
+.map-art{position:absolute;inset:0;width:100%;height:100%;opacity:.88}
+.map-node{position:absolute;z-index:2;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:5px;background:transparent;border:0;padding:0;color:var(--text);min-width:82px;max-width:130px;white-space:normal}
+.map-node:hover:not(:disabled){background:transparent;border-color:transparent;transform:translate(-50%,-50%) scale(1.04)}
+.map-node:disabled{opacity:.8}
+.map-pin{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-size:20px;background:#242b20;border:2px solid #a18a52;box-shadow:0 3px 12px #0009,0 0 0 4px #10160f88;position:relative}
+.map-node.selected .map-pin{border-color:#f0d58b;box-shadow:0 0 0 4px #d8b66b44,0 0 22px #d8b66b55}
+.map-node.captured .map-pin{background:#31482b;border-color:#a5c78b}
+.map-node.locked .map-pin{border-color:#6b7160;filter:saturate(.5)}
+.map-pin .pin-status{position:absolute;right:-4px;top:-4px;width:17px;height:17px;border-radius:50%;display:grid;place-items:center;font-size:10px;background:#8aa978;color:#142010;border:1px solid #10160f}
+.map-label{font-size:11px;font-weight:800;letter-spacing:.02em;background:#111710df;border:1px solid #566046;border-radius:5px;padding:4px 7px;text-align:center;max-width:125px;text-shadow:0 1px 2px #000;line-height:1.25}
+.map-node.captured .map-label{border-color:#637b50}.map-node.locked .map-label{color:#a1a697}
+.map-legend{display:flex;gap:14px;flex-wrap:wrap;font-size:11px;color:var(--muted);padding:11px 2px 0}
+.legend-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:#d8b66b}.legend-dot.secured{background:#91b87a}.legend-dot.locked{background:#777e6e}
+.region-detail{margin-top:14px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;padding:17px;background:linear-gradient(120deg,#20271e,#151a15);border:1px solid var(--line);border-radius:12px}
+.region-detail h3{margin:4px 0;font-size:19px}.region-detail p{margin:4px 0 10px;color:var(--muted);font-size:13px}.detail-side{min-width:190px;display:flex;flex-direction:column;justify-content:center;gap:8px}.detail-metrics{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--muted)}.detail-metrics strong{color:var(--text)}
+@media(max-width:620px){.tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.tab-btn{justify-content:center;padding:10px 6px}.map-shell{min-height:360px}.map-node{min-width:58px;max-width:88px;gap:3px}.map-pin{width:34px;height:34px;font-size:17px}.map-label{font-size:9px;padding:3px 4px;max-width:86px}.region-detail{grid-template-columns:1fr}.detail-side{min-width:0}.map-node:hover:not(:disabled){transform:translate(-50%,-50%) scale(1)}}
+
 </style>
 </head>
 <body>
@@ -30,36 +57,73 @@ header{display:flex;align-items:center;justify-content:space-between;gap:20px;pa
   <div class="banner-copy"><div class="eyebrow">War Council Dispatch</div><h2 id="dispatchTitle">The realm is not yet lost.</h2><p id="dispatchText">Our scouts report orc banners on the horizon. Turn timber, iron and harvest into a fighting force. The frontier will not reclaim itself.</p><div class="progress"><span id="warProgress"></span></div></div>
   <div class="banner-stats"><div class="stat"><small>Territories secured</small><strong id="territoryStat">0 / 6</strong></div><div class="stat"><small>Army strength</small><strong id="armyStat">24</strong></div><div class="stat"><small>Production bonus</small><strong id="bonusStat">+0%</strong></div><div class="stat"><small>Campaign status</small><strong id="statusStat">Gathering</strong></div></div>
 </section>
-<div class="layout">
-  <div class="column">
+
+<nav class="tabs" role="tablist" aria-label="War council sections">
+  <button class="tab-btn" id="tab-economy" role="tab" aria-selected="true" aria-controls="panel-economy" data-tab="economy">⚒ Economy</button>
+  <button class="tab-btn" id="tab-map" role="tab" aria-selected="false" aria-controls="panel-map" data-tab="map">🗺 War Map</button>
+  <button class="tab-btn" id="tab-army" role="tab" aria-selected="false" aria-controls="panel-army" data-tab="army">⚔ Army & Research</button>
+  <button class="tab-btn" id="tab-dispatches" role="tab" aria-selected="false" aria-controls="panel-dispatches" data-tab="dispatches">📜 Dispatches</button>
+</nav>
+<section class="tab-content active" id="panel-economy" role="tabpanel" aria-labelledby="tab-economy" data-panel="economy">
+  <div class="tab-stack">
     <section class="panel">
       <div class="panel-head"><div><h3>01 / The Homefront</h3><p>Build the engine that keeps the war moving.</p></div><span class="section-kicker">Industry</span></div>
       <div class="panel-body"><div class="building-grid" id="buildings"></div></div>
     </section>
     <section class="panel">
-      <div class="panel-head"><div><h3>02 / The War Table</h3><p>Choose a frontier. Every campaign consumes supplies.</p></div><span class="section-kicker">Frontline</span></div>
-      <div class="panel-body"><div class="region-list" id="regions"></div></div>
-    </section>
-    <section class="panel">
-      <div class="panel-head"><div><h3>03 / Field Orders</h3><p>Small actions can bridge a shortage when time is short.</p></div><span class="section-kicker">Clicker</span></div>
+      <div class="panel-head"><div><h3>Field Orders</h3><p>Quickly gather supplies when production falls short.</p></div><span class="section-kicker">Clicker</span></div>
       <div class="panel-body"><div class="actions"><button id="chopBtn">🪓 Chop timber <strong>+8 wood</strong></button><button id="forageBtn">🌾 Forage provisions <strong>+8 food</strong></button><button id="mineBtn">⛏ Scavenge iron <strong>+3 iron</strong></button></div></div>
     </section>
   </div>
-  <div class="column">
+</section>
+<section class="tab-content" id="panel-map" role="tabpanel" aria-labelledby="tab-map" data-panel="map" hidden>
+  <section class="panel">
+    <div class="panel-head"><div><h3>War Table / The Contested Realm</h3><p>Select a territory on the map to inspect its defences and launch a campaign.</p></div><span class="section-kicker">Frontline</span></div>
+    <div class="panel-body">
+      <div class="map-shell" id="mapShell">
+        <svg class="map-art" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-label="Stylized map of the six territories">
+          <defs>
+            <pattern id="mapGrid" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#d9d29a" stroke-opacity=".12" stroke-width="1"/></pattern>
+            <linearGradient id="land" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#68734a" stop-opacity=".62"/><stop offset="1" stop-color="#303b2c" stop-opacity=".2"/></linearGradient>
+          </defs>
+          <rect width="1000" height="600" fill="url(#mapGrid)"/>
+          <path d="M40 95 L150 45 270 70 345 142 305 225 220 255 155 220 65 255Z" fill="url(#land)" stroke="#a9ae78" stroke-opacity=".35" stroke-width="2"/>
+          <path d="M285 190 L375 115 475 140 535 210 500 295 410 320 330 280Z" fill="#656b43" fill-opacity=".44" stroke="#a9ae78" stroke-opacity=".3" stroke-width="2"/>
+          <path d="M460 80 L590 55 675 120 655 205 575 235 510 185Z" fill="#6a7049" fill-opacity=".35" stroke="#a9ae78" stroke-opacity=".3" stroke-width="2"/>
+          <path d="M500 285 L600 235 720 275 755 365 690 440 585 415 525 365Z" fill="#6a6140" fill-opacity=".38" stroke="#b8a56a" stroke-opacity=".35" stroke-width="2"/>
+          <path d="M700 100 L825 70 935 130 920 235 840 280 760 225Z" fill="#4c5739" fill-opacity=".4" stroke="#a9ae78" stroke-opacity=".3" stroke-width="2"/>
+          <path d="M755 355 L850 290 945 345 965 455 885 535 790 490 735 425Z" fill="#70402f" fill-opacity=".4" stroke="#bd8661" stroke-opacity=".4" stroke-width="2"/>
+          <path d="M0 390 C160 335 230 430 370 390 S610 320 720 390 890 470 1000 410" fill="none" stroke="#6f91a0" stroke-opacity=".55" stroke-width="22"/>
+          <path d="M0 390 C160 335 230 430 370 390 S610 320 720 390 890 470 1000 410" fill="none" stroke="#b1c9bd" stroke-opacity=".3" stroke-width="3" stroke-dasharray="9 10"/>
+          <path d="M100 140 Q180 90 260 160 T430 205 T590 150 T810 155 M190 210 Q260 300 360 250 T530 320 T700 350 T870 430" fill="none" stroke="#d7c78c" stroke-opacity=".42" stroke-width="3" stroke-dasharray="8 7"/>
+          <g fill="#d8c78a" fill-opacity=".22"><circle cx="120" cy="125" r="28"/><circle cx="380" cy="195" r="32"/><circle cx="555" cy="145" r="22"/><circle cx="630" cy="340" r="35"/><circle cx="810" cy="165" r="28"/><circle cx="860" cy="420" r="38"/></g>
+          <g fill="#e4d7a4" fill-opacity=".5" font-family="serif" font-size="19" letter-spacing="5"><text x="45" y="40">THE CROWN LANDS</text><text x="670" y="575">ORC-CONTROLLED TERRITORY</text></g>
+          <g fill="#d8d1a5" fill-opacity=".3"><path d="M115 80l-13 25h26zM146 98l-13 25h26zM177 83l-13 25h26zM354 150l-14 28h28zM392 135l-14 28h28zM425 155l-14 28h28zM775 118l-14 28h28zM810 102l-14 28h28zM840 130l-14 28h28z"/></g>
+        </svg>
+      </div>
+      <div class="map-legend"><span><i class="legend-dot secured"></i>Secured</span><span><i class="legend-dot"></i>Available frontier</span><span><i class="legend-dot locked"></i>Locked</span><span>Lines show contested supply routes</span></div>
+      <div id="regionDetail" class="region-detail"></div>
+    </div>
+  </section>
+</section>
+<section class="tab-content" id="panel-army" role="tabpanel" aria-labelledby="tab-army" data-panel="army" hidden>
+  <div class="tab-stack">
     <section class="panel">
-      <div class="panel-head"><div><h3>04 / Muster the Army</h3><p>Recruitment converts supplies into military power.</p></div><span class="section-kicker">Forces</span></div>
+      <div class="panel-head"><div><h3>Muster the Army</h3><p>Recruitment converts supplies into military power.</p></div><span class="section-kicker">Forces</span></div>
       <div class="panel-body"><div class="unit-list" id="units"></div><div style="margin-top:13px;padding:11px;background:#0d110d;border:1px solid #30392d;border-radius:8px;display:flex;justify-content:space-between;gap:12px"><span style="font-size:12px;color:var(--muted)">Effective army strength</span><strong id="powerDetail" style="color:var(--gold)">24</strong></div></div>
     </section>
     <section class="panel">
-      <div class="panel-head"><div><h3>05 / Military Research</h3><p>Permanent improvements to industry and doctrine.</p></div><span class="section-kicker">Doctrine</span></div>
+      <div class="panel-head"><div><h3>Military Research</h3><p>Permanent improvements to industry and doctrine.</p></div><span class="section-kicker">Doctrine</span></div>
       <div class="panel-body"><div class="research-list" id="research"></div></div>
     </section>
-    <section class="panel">
-      <div class="panel-head"><div><h3>06 / Dispatches</h3><p>Reports from the workshops and the front.</p></div><button class="secondary" id="clearLogBtn" style="font-size:11px;padding:5px 8px">Clear</button></div>
-      <div class="panel-body"><div class="log" id="log"></div></div>
-    </section>
   </div>
-</div>
+</section>
+<section class="tab-content" id="panel-dispatches" role="tabpanel" aria-labelledby="tab-dispatches" data-panel="dispatches" hidden>
+  <section class="panel">
+    <div class="panel-head"><div><h3>War Council Dispatches</h3><p>Reports from the workshops and the front.</p></div><button class="secondary" id="clearLogBtn" style="font-size:11px;padding:5px 8px">Clear log</button></div>
+    <div class="panel-body"><div class="log" id="log"></div></div>
+  </section>
+</section>
 <div class="footnote">IRONBOUND · A single-player idle war effort · Progress saves in this browser</div>
 </div>
 <script>
@@ -110,6 +174,7 @@ const initialState=()=>({
  captured:[],logs:[],lastTick:Date.now(),createdAt:Date.now()
 });
 let state;
+let selectedRegion = 0;
 function load(){
  try{
   const raw=localStorage.getItem(SAVE_KEY);
@@ -212,13 +277,33 @@ function renderResearch(){
   return '<div class="tech"><div class="item-icon">'+d.icon+'</div><div><div class="item-name">'+d.name+'</div><p>'+d.desc+'</p><div class="cost">'+(done?"Completed":costText(d.cost))+'</div></div><button data-research="'+id+'" '+(done||!canAfford(d.cost)?"disabled":"")+'>'+(done?"Researched":"Research")+'</button></div>';
  }).join("");
 }
-function renderRegions(){
- document.getElementById("regions").innerHTML=regions.map((r,i)=>{
-  const captured=state.captured.includes(i),unlocked=i===0||state.captured.includes(i-1),power=armyPower(),cost=campaignCost(),afford=canAfford(cost);
-  let badge=captured?'<span class="badge success">✓ Secured</span>':unlocked?'<span class="badge">Frontier</span>':'<span class="badge lock">🔒 Locked</span>';
-  let button=captured?'<button disabled>Territory secured</button>':!unlocked?'<button disabled>Secure previous region</button>':'<button class="'+(power>=r.enemy?"gold":"danger")+'" data-campaign="'+i+'" '+(afford?"":"disabled")+'>'+(power>=r.enemy?"Launch campaign":"Outmatched — risk defeat")+'</button>';
-  return '<div class="region '+(captured?"captured ":"")+(unlocked?"":"locked")+'"><div class="region-top"><div class="region-art">'+r.icon+'</div><div><h4>'+r.name+'</h4><div class="region-desc">'+r.desc+'</div><div style="margin-top:5px">'+badge+'</div></div></div><div class="region-meta"><span>Orc strength</span><strong>'+r.enemy+'</strong></div><div class="region-meta"><span>Your army</span><strong style="color:'+(power>=r.enemy?"var(--green)":"var(--red)")+'">'+power+'</strong></div><div class="cost">Spoils: '+costText(r.reward)+'</div><div class="cost">Supply cost: '+costText(cost)+'</div>'+button+'</div>';
- }).join("");
+function renderMap(){
+ const shell=document.getElementById("mapShell");
+ const coords=[{x:15,y:24},{x:32,y:42},{x:49,y:23},{x:64,y:57},{x:78,y:27},{x:86,y:70}];
+ const paths=coords.map(p=>(p.x/100*1000)+","+(p.y/100*600)).join(" ");
+ let routeSvg='<svg class="map-art" viewBox="0 0 1000 600" preserveAspectRatio="none" style="z-index:1;pointer-events:none"><polyline points="'+paths+'" fill="none" stroke="#d8b66b" stroke-opacity=".8" stroke-width="4" stroke-dasharray="10 10"/><polyline points="'+paths+'" fill="none" stroke="#f3e4ac" stroke-opacity=".22" stroke-width="1"/></svg>';
+ const existing=shell.querySelector(".map-art");
+ if(existing){
+  const overlay= shell.querySelector(".map-route-overlay");
+  if(overlay)overlay.remove();
+  const route=document.createElement("div");route.className="map-route-overlay";route.innerHTML=routeSvg;shell.appendChild(route);
+ }
+ shell.querySelectorAll(".map-node").forEach(el=>el.remove());
+ regions.forEach((r,i)=>{
+  const c=coords[i],captured=state.captured.includes(i),unlocked=i===0||state.captured.includes(i-1);
+  const b=document.createElement("button");
+  b.className="map-node"+(captured?" captured":"")+(unlocked?"":" locked")+(selectedRegion===i?" selected":"");
+  b.style.left=c.x+"%";b.style.top=c.y+"%";b.dataset.regionSelect=String(i);
+  b.setAttribute("aria-label","Select "+r.name+(captured?", secured":unlocked?", frontier":", locked"));
+  b.innerHTML='<span class="map-pin">'+r.icon+(captured?'<i class="pin-status">✓</i>':!unlocked?'<i class="pin-status" style="background:#747c6d;color:#10140e">•</i>':'')+'</span><span class="map-label">'+r.name+'</span>';
+  shell.appendChild(b);
+ });
+ if(!regions[selectedRegion])selectedRegion=0;
+ const r=regions[selectedRegion],i=selectedRegion,captured=state.captured.includes(i),unlocked=i===0||state.captured.includes(i-1),power=armyPower(),cost=campaignCost(),afford=canAfford(cost);
+ const detail=document.getElementById("regionDetail");
+ const status=captured?'<span class="badge success">✓ Territory secured</span>':unlocked?'<span class="badge">Available frontier</span>':'<span class="badge lock">🔒 Secure the previous region first</span>';
+ const action=captured?'<button disabled>Territory secured</button>':!unlocked?'<button disabled>Frontier locked</button>':'<button class="'+(power>=r.enemy?"gold":"danger")+'" data-campaign="'+i+'" '+(afford?"":"disabled")+'>'+(power>=r.enemy?"Launch campaign":"Outmatched — risk defeat")+'</button>';
+ detail.innerHTML='<div><div class="section-kicker">Territory '+String(i+1).padStart(2,"0")+' / 06</div><h3>'+r.icon+' '+r.name+'</h3><div>'+status+'</div><p>'+r.desc+'</p><div class="detail-metrics"><span>Orc strength <strong>'+r.enemy+'</strong></span><span>Your army <strong style="color:'+(power>=r.enemy?"var(--green)":"var(--red)")+'">'+power+'</strong></span></div><p style="margin-top:10px"><strong style="color:var(--text)">Spoils:</strong> '+costText(r.reward)+'</p><p><strong style="color:var(--text)">Supply cost:</strong> '+costText(cost)+'</p></div><div class="detail-side"><div class="cost">'+(captured?"The Crown controls this territory.":unlocked?"Campaigns consume supplies. If your army is weaker, the attack may be repelled.":"Capture the previous region to open this front.")+'</div>'+action+'</div>';
 }
 function renderLog(){
  const el=document.getElementById("log");
@@ -234,7 +319,7 @@ function renderBanner(){
  document.getElementById("dispatchTitle").textContent=n===regions.length?"The realm is liberated.":n===0?"The realm is not yet lost.":next.name+" awaits.";
  document.getElementById("dispatchText").textContent=n===regions.length?"The orc warlord is defeated. Keep expanding your economy, muster elite forces, and perfect the Crown's war machine.":n===0?"Our scouts report orc banners on the horizon. Turn timber, iron and harvest into a fighting force. The frontier will not reclaim itself.":"The banners of the Crown now fly over "+state.captured.map(i=>regions[i].name).join(", ")+". Secure the next frontier, reinforce your supply lines, and keep the army fed.";
 }
-function render(){renderResources();renderBuildings();renderUnits();renderResearch();renderRegions();renderLog();renderBanner()}
+function render(){renderResources();renderBuildings();renderUnits();renderResearch();renderMap();renderLog();renderBanner()}
 function persistQuiet(){state.lastTick=Date.now();try{localStorage.setItem(SAVE_KEY,JSON.stringify(state))}catch(e){}}
 function tick(){
  const now=Date.now(),elapsed=Math.max(0,Math.min(5,(now-(state.lastTick||now))/1000));
@@ -242,8 +327,18 @@ function tick(){
  renderResources();renderBuildings();renderUnits();renderResearch();renderRegions();renderBanner();
  if(Math.floor(now/10000)!==Math.floor((now-1000)/10000))persistQuiet();
 }
+
+document.querySelectorAll("[data-tab]").forEach(function(button){
+ button.addEventListener("click",function(){
+  const name=button.dataset.tab;
+  document.querySelectorAll("[data-tab]").forEach(function(tab){tab.setAttribute("aria-selected",String(tab===button));});
+  document.querySelectorAll("[data-panel]").forEach(function(panel){const active=panel.dataset.panel===name;panel.classList.toggle("active",active);panel.hidden=!active;});
+ });
+});
+
 document.addEventListener("click",function(e){
  const b=e.target.closest("button");if(!b)return;
+ if(b.dataset.regionSelect!==undefined){selectedRegion=Number(b.dataset.regionSelect);renderMap();return;}
  if(b.dataset.build)build(b.dataset.build);
  if(b.dataset.recruit)recruit(b.dataset.recruit);
  if(b.dataset.research)research(b.dataset.research);
