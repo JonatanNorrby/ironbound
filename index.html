@@ -324,7 +324,7 @@ function persistQuiet(){state.lastTick=Date.now();try{localStorage.setItem(SAVE_
 function tick(){
  const now=Date.now(),elapsed=Math.max(0,Math.min(5,(now-(state.lastTick||now))/1000));
  if(elapsed>0){const rates=production();Object.keys(rates).forEach(k=>state.resources[k]=Math.min(999999999,state.resources[k]+rates[k]*elapsed));state.lastTick=now;}
- renderResources();renderBuildings();renderUnits();renderResearch();renderRegions();renderBanner();
+ renderResources();renderBuildings();renderUnits();renderResearch();renderMap();renderBanner();
  if(Math.floor(now/10000)!==Math.floor((now-1000)/10000))persistQuiet();
 }
 
