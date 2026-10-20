@@ -12,7 +12,7 @@
 </style>
 </head>
 <body>
-<div class="version-badge" id="versionBadge">v0.1.1</div>
+<div class="version-badge" id="versionBadge">v0.1.2</div>
 <div class="app">
 <header class="topbar"><div class="brand"><div class="sigil">✦</div><div><h1>GRAVEBOUND</h1><p>THE ETERNAL HUNT</p></div></div><div class="top-actions"></div></header>
 <section class="stats">
@@ -62,7 +62,7 @@ fortune:{name:'Second Sight',icon:'☼',desc:'+8% critical chance',max:5}
 };
 let meta={echoes:0,runs:0,best:0,upgrades:{vigor:0,might:0,fortune:0,magnet:0}};
 try{const s=JSON.parse(localStorage.getItem(SAVE));if(s&&s.upgrades)meta={...meta,...s,upgrades:{...meta.upgrades,...s.upgrades}}}catch(e){}
-let g, enemies=[],projectiles=[],particles=[],orbs=[],floaters=[],last=0,raf=0,elapsed=0,spawnClock=0,level=1,xp=0,xpNeed=12,kills=0,runEcho=0,paused=false,ended=false,modal=false,speed=1,autoPick=0,boss=null,feedItems=[],keys={},frame=0;
+let g, enemies=[],projectiles=[],particles=[],orbs=[],floaters=[],last=0,raf=0,elapsed=0,spawnClock=0,level=1,xp=0,xpNeed=12,kills=0,runEcho=0,paused=false,ended=false,modal=false,speed=1,autoPick=0,boss=null,feedItems=[],keys={},frame=0,restartLeft=10,statsOpen=false,runSummary=null;
 const rand=(a,b)=>a+Math.random()*(b-a),clamp=(v,a,b)=>Math.max(a,Math.min(b,v)),dist=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y);
 function save(){try{localStorage.setItem(SAVE,JSON.stringify(meta))}catch(e){}}
 function log(msg,type=''){feedItems.unshift({msg,type});feedItems=feedItems.slice(0,5);$('feed').innerHTML=feedItems.map(x=>'<div class="'+x.type+'">'+x.msg+'</div>').join('')}
