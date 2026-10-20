@@ -41,6 +41,7 @@ header{display:flex;align-items:center;justify-content:space-between;gap:20px;pa
 .map-node.captured .map-label{border-color:#637b50}.map-node.locked .map-label{color:#a1a697}
 .map-legend{display:flex;gap:14px;flex-wrap:wrap;font-size:11px;color:var(--muted);padding:11px 2px 0}
 .legend-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:#d8b66b}.legend-dot.secured{background:#91b87a}.legend-dot.locked{background:#777e6e}
+.battle-stage{margin-top:18px;padding:16px;border:1px solid #766346;border-radius:12px;background:linear-gradient(155deg,#20271e,#101510)}.battle-head{display:flex;justify-content:space-between;gap:14px;align-items:flex-start;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:14px}.battle-head h3{margin:4px 0;font-size:20px}.battle-head p{margin:3px 0;color:var(--muted);font-size:13px}.battle-columns{display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:15px}.battlefield{padding:12px;border:1px solid #424b36;border-radius:10px;background:radial-gradient(ellipse at 50% 50%,#3c4a30,#172018 72%)}.battle-side-label{font-size:10px;letter-spacing:.12em;color:#c9d2b9;text-align:center;margin:0 0 8px}.enemy-label{margin:8px 0 0;color:#d58b70}.battle-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}.battle-cell{min-width:0;aspect-ratio:1.15;padding:4px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;background:#293526;border:1px dashed #71805b;border-radius:7px;font-size:24px}.battle-cell small{font-size:9px;color:#d1d6c5;text-align:center}.battle-cell:disabled{opacity:1;cursor:default}.battle-hint{font-size:12px;color:var(--muted)}.deployment-panel{padding:12px;border:1px solid var(--line);border-radius:10px;background:#151a15;display:flex;flex-direction:column;gap:8px}.deployment-panel h4{margin:0}.unit-pick{display:flex;align-items:center;gap:9px;text-align:left;background:#222a20;padding:8px}.unit-pick>span:first-child{font-size:23px}.unit-pick strong,.unit-pick small{display:block}.unit-pick small{font-size:10px;color:var(--muted)}.unit-pick.picked{border-color:var(--gold);background:#3b3925}.deployment-summary{font-size:12px;color:var(--muted);margin-top:auto;padding:7px 0}.ready-btn{width:100%}.combat-arena{min-height:190px;display:flex;align-items:center;justify-content:space-evenly;gap:8px;flex-wrap:wrap;padding:22px 10px;border-radius:10px;border:1px solid #4b513b;background:linear-gradient(180deg,#283324,#171b16);overflow:hidden}.combat-unit{font-size:31px;animation:unit-charge .8s var(--delay,0s) ease-in-out infinite alternate;display:inline-block}.combat-clash{font-size:42px;color:var(--gold);animation:clash .5s ease-in-out infinite alternate}.battle-won .enemy{opacity:.25;transform:translateX(25px) rotate(15deg)}.battle-lost .friendly{opacity:.25;transform:translateX(-20px) rotate(-15deg)}@keyframes unit-charge{from{transform:translateY(5px) scale(.92)}to{transform:translateY(-7px) scale(1.08)}}@keyframes clash{from{transform:scale(.8) rotate(-12deg)}to{transform:scale(1.2) rotate(12deg)}}.battle-result{padding:14px;margin-top:12px;border-radius:9px;background:#0f140f;border:1px solid var(--line)}.battle-result p{margin:5px 0 0;color:var(--muted);font-size:13px}.victory-text{color:#b7d59a}.defeat-text{color:#dc927b}.battle-result-actions{margin-top:12px}@media(max-width:720px){.battle-columns{grid-template-columns:1fr}.deployment-panel{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.deployment-panel h4,.deployment-summary,.ready-btn{grid-column:1/-1}.combat-unit{font-size:25px}}
 .region-detail{margin-top:14px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;padding:17px;background:linear-gradient(120deg,#20271e,#151a15);border:1px solid var(--line);border-radius:12px}
 .region-detail h3{margin:4px 0;font-size:19px}.region-detail p{margin:4px 0 10px;color:var(--muted);font-size:13px}.detail-side{min-width:190px;display:flex;flex-direction:column;justify-content:center;gap:8px}.detail-metrics{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--muted)}.detail-metrics strong{color:var(--text)}
 @media(max-width:620px){.tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.tab-btn{justify-content:center;padding:10px 6px}.map-shell{min-height:360px}.map-node{min-width:58px;max-width:88px;gap:3px}.map-pin{width:34px;height:34px;font-size:17px}.map-label{font-size:9px;padding:3px 4px;max-width:86px}.region-detail{grid-template-columns:1fr}.detail-side{min-width:0}.map-node:hover:not(:disabled){transform:translate(-50%,-50%) scale(1)}}
@@ -56,7 +57,7 @@ header{display:flex;align-items:center;justify-content:space-between;gap:20px;pa
 <section class="resources" id="resources"></section>
 <section class="war-banner">
   <div class="banner-copy"><div class="eyebrow">War Council Dispatch</div><h2 id="dispatchTitle">The realm is not yet lost.</h2><p id="dispatchText">Our scouts report orc banners on the horizon. Turn timber, iron and harvest into a fighting force. The frontier will not reclaim itself.</p><div class="progress"><span id="warProgress"></span></div></div>
-  <div class="banner-stats"><div class="stat"><small>Territories secured</small><strong id="territoryStat">0 / 6</strong></div><div class="stat"><small>Army strength</small><strong id="armyStat">24</strong></div><div class="stat"><small>Production bonus</small><strong id="bonusStat">+0%</strong></div><div class="stat"><small>Campaign status</small><strong id="statusStat">Gathering</strong></div></div>
+  <div class="banner-stats"><div class="stat"><small>Successful raids</small><strong id="territoryStat">0 / 6</strong></div><div class="stat"><small>Army strength</small><strong id="armyStat">24</strong></div><div class="stat"><small>Production bonus</small><strong id="bonusStat">+0%</strong></div><div class="stat"><small>Campaign status</small><strong id="statusStat">Gathering</strong></div></div>
 </section>
 
 <nav class="tabs" role="tablist" aria-label="War council sections">
@@ -79,7 +80,7 @@ header{display:flex;align-items:center;justify-content:space-between;gap:20px;pa
 </section>
 <section class="tab-content" id="panel-map" role="tabpanel" aria-labelledby="tab-map" data-panel="map" hidden>
   <section class="panel">
-    <div class="panel-head"><div><h3>War Table / The Contested Realm</h3><p>Select a territory on the map to inspect its defences and launch a campaign.</p></div><span class="section-kicker">Frontline</span></div>
+    <div class="panel-head"><div><h3>War Table / Orc Territory</h3><p>Plunder villages for supplies or raid strongholds to seize permanent buildings.</p></div><span class="section-kicker">Raiding</span></div>
     <div class="panel-body">
       <div class="map-shell" id="mapShell">
         <svg class="map-art" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-label="Stylized map of the six territories">
@@ -103,7 +104,7 @@ header{display:flex;align-items:center;justify-content:space-between;gap:20px;pa
         </svg>
       </div>
       <div class="map-legend"><span><i class="legend-dot secured"></i>Secured</span><span><i class="legend-dot"></i>Available frontier</span><span><i class="legend-dot locked"></i>Locked</span><span>Lines show contested supply routes</span></div>
-      <div id="regionDetail" class="region-detail"></div>
+      <div id="regionDetail" class="region-detail"></div><div id="battleStage" class="battle-stage" hidden></div>
     </div>
   </section>
 </section>
@@ -153,12 +154,12 @@ const unitDefs={
  siege:{name:"Siege Engine",icon:"🛞",desc:"Heavy field artillery for fortified enemies.",power:40,cost:{wood:60,stone:25,iron:35,gold:35}}
 };
 const regions=[
- {name:"Greenfields",icon:"🌲",enemy:25,desc:"The farms are burning. Secure the grain road.",reward:{wood:45,food:65,gold:25},bonus:"A safe food route"},
- {name:"Ashen Ford",icon:"🌉",enemy:60,desc:"A river crossing guarded by raider warbands.",reward:{wood:55,iron:35,gold:35},bonus:"Trade caravans return"},
- {name:"Blackpine Forest",icon:"🌲",enemy:110,desc:"Orc scouts gather beneath the black boughs.",reward:{wood:80,stone:40,food:60},bonus:"Timber supply secured"},
- {name:"The Broken Hills",icon:"⛰️",enemy:190,desc:"Iron-rich ridges have fallen to the clans.",reward:{stone:100,iron:80,gold:50},bonus:"The mines are ours"},
- {name:"Ironhold Pass",icon:"🏰",enemy:300,desc:"The old fortress stands behind a wall of steel.",reward:{iron:100,food:100,gold:90},bonus:"The mountain road opens"},
- {name:"The Warlord's Gate",icon:"🔥",enemy:450,desc:"The orc warlord waits beneath his war banners.",reward:{wood:150,stone:150,iron:150,food:150,gold:150},bonus:"The realm is liberated"}
+ {name:"Mossvale Village",icon:"🏚️",type:"plunder",enemy:22,desc:"A poorly defended village with storehouses full of provisions and timber.",reward:{wood:55,food:75,gold:20},bonus:"Village supplies"},
+ {name:"Redwater Hamlet",icon:"🏘️",type:"plunder",enemy:42,desc:"A riverside settlement with granaries and trade goods.",reward:{wood:45,food:55,stone:20,gold:35},bonus:"Village supplies"},
+ {name:"Blackpine Outpost",icon:"🛖",type:"plunder",enemy:65,desc:"A timber outpost guarded by raiders.",reward:{wood:90,food:35,iron:15},bonus:"Field supplies"},
+ {name:"Ashfang Stockade",icon:"🪓",type:"stronghold",enemy:75,desc:"A fortified stockade built around a productive iron seam.",building:"ironmine",bonus:"An Iron Mine"},
+ {name:"Skullcrag Fortress",icon:"🏰",type:"stronghold",enemy:125,desc:"Heavy gates and watchtowers protect an orc-controlled quarry.",building:"quarry",bonus:"A Stone Quarry"},
+ {name:"Dreadmaw Citadel",icon:"🔥",type:"stronghold",enemy:190,desc:"A brutal stronghold whose workshops can be seized.",building:"barracks",bonus:"A Barracks"}
 ];
 const researchDefs={
  tools:{name:"Improved Tools",icon:"🔨",desc:"+15% production from all industry.",cost:{wood:80,iron:20,gold:40}},
@@ -172,7 +173,7 @@ const initialState=()=>({
  buildings:{lumber:1,farm:1,quarry:0,ironmine:0,market:0,barracks:1},
  army:{militia:8,archer:0,knight:0,siege:0},
  research:{tools:false,drills:false,supply:false,siegecraft:false,stewardship:false},
- captured:[],logs:[],expeditions:[],lastTick:Date.now(),createdAt:Date.now()
+ captured:[],raids:{},logs:[],expeditions:[],lastTick:Date.now(),createdAt:Date.now()
 });
 let state;
 let selectedRegion = 0;
@@ -181,7 +182,7 @@ function load(){
   const raw=localStorage.getItem(SAVE_KEY);
   if(!raw){state=initialState();addLog("The council convenes. The Crown's war effort begins.","good");return}
   const parsed=JSON.parse(raw), fresh=initialState();
-  state={...fresh,...parsed,resources:{...fresh.resources,...parsed.resources},buildings:{...fresh.buildings,...parsed.buildings},army:{...fresh.army,...parsed.army},research:{...fresh.research,...parsed.research},captured:Array.isArray(parsed.captured)?parsed.captured:[],logs:Array.isArray(parsed.logs)?parsed.logs:[],expeditions:Array.isArray(parsed.expeditions)?parsed.expeditions:[]};
+  state={...fresh,...parsed,resources:{...fresh.resources,...parsed.resources},buildings:{...fresh.buildings,...parsed.buildings},army:{...fresh.army,...parsed.army},research:{...fresh.research,...parsed.research},captured:Array.isArray(parsed.captured)?parsed.captured:[],raids:parsed.raids&&typeof parsed.raids==="object"?parsed.raids:{},logs:Array.isArray(parsed.logs)?parsed.logs:[],expeditions:Array.isArray(parsed.expeditions)?parsed.expeditions:[]};
   const elapsed=Math.max(0,Math.min(8*60*60,(Date.now()-(Number(state.lastTick)||Date.now()))/1000));
   if(elapsed>5){const rates=production();Object.keys(rates).forEach(k=>state.resources[k]+=rates[k]*elapsed);addLog("Returning after "+formatDuration(elapsed)+": your workshops produced supplies while you were away.","good")}
   state.lastTick=Date.now();
@@ -232,24 +233,28 @@ function research(id){
  spend(researchDefs[id].cost);state.research[id]=true;
  addLog("Research complete: <strong>"+researchDefs[id].name+"</strong>.","good");render();persistQuiet();
 }
-function campaign(index){
- const region=regions[index];if(state.captured.includes(index))return;
- if(index>0&&!state.captured.includes(index-1)){toast("Secure the previous region first.");return}
- const cost=campaignCost();if(!spend(cost)){toast("The army needs more campaign supplies.");return}
- const power=armyPower(), enemy=region.enemy;
- if(power<enemy){
-  const loss=state.army.militia>0?1:0;
-  if(loss)state.army.militia--;
-  addLog("Campaign at <strong>"+region.name+"</strong> repelled. Army strength "+power+" / "+enemy+". "+(loss?"One militia unit was lost.":"The force withdrew intact.")+" Rebuild and try again.","warn");
-  toast("Campaign repelled — strengthen the army first.");
- }else{
-  state.captured.push(index);
-  Object.keys(region.reward).forEach(k=>state.resources[k]+=region.reward[k]*(state.research.stewardship?1.1:1));
-  addLog("<strong>"+region.name+" secured!</strong> "+region.bonus+". Spoils delivered to the homefront.","good");
-  if(state.captured.length===regions.length){addLog("<strong>The orc warlord has fallen.</strong> The realm is liberated — the campaign continues if you want to build your strength.","good");toast("Victory! The realm is liberated.");}
-  else{toast(region.name+" secured. The frontier advances.");}
- }
- render();persistQuiet();
+let activeBattle=null;
+function openBattle(index){const t=regions[index];if(!t)return;if(!spend(campaignCost())){toast("Not enough supplies to launch this raid.");return}activeBattle={index,placements:[],phase:"deploy",selected:"militia"};addLog("Raid party dispatched toward <strong>"+t.name+"</strong>. Arrange your forces.","good");renderBattle();persistQuiet()}
+function closeBattle(){activeBattle=null;renderMap();persistQuiet()}
+function renderBattle(){
+ const stage=document.getElementById("battleStage");if(!activeBattle){stage.hidden=true;stage.innerHTML="";return}stage.hidden=false;
+ const t=regions[activeBattle.index],battle=activeBattle;
+ if(battle.phase==="deploy"){
+  const counts=Object.fromEntries(Object.keys(unitDefs).map(k=>[k,Math.max(0,(state.army[k]||0)-battle.placements.filter(p=>p.unit===k).length)]));
+  const cells=Array.from({length:15},(_,i)=>{const p=battle.placements.find(p=>p.cell===i);return '<button class="battle-cell" data-battle-cell="'+i+'" '+(p?'disabled':'')+'>'+(p?unitDefs[p.unit].icon+'<small>'+unitDefs[p.unit].name+'</small>':'＋<small>Place unit</small>')+'</button>'}).join("");
+  stage.innerHTML='<div class="battle-head"><div><div class="section-kicker">'+(t.type==="plunder"?"Village Plunder":"Stronghold Raid")+'</div><h3>'+t.icon+' '+t.name+'</h3><p>'+t.desc+'</p></div><button class="secondary" data-battle-cancel>Withdraw</button></div><div class="battle-columns"><div class="battlefield"><div class="battle-side-label">YOUR FORMATION · FRONT LINE AT TOP</div><div class="battle-grid">'+cells+'</div><div class="battle-side-label enemy-label">ORC DEFENDERS · STRENGTH '+t.enemy+'</div><p class="battle-hint">Militia and knights hold the front. Archers are more effective from the rear. Siege engines gain a major bonus against strongholds.</p></div><aside class="deployment-panel"><h4>Available forces</h4>'+Object.keys(unitDefs).map(k=>'<button class="unit-pick '+(battle.selected===k?'picked':'')+'" data-pick-unit="'+k+'" '+(counts[k]===0?'disabled':'')+'><span>'+unitDefs[k].icon+'</span><span><strong>'+unitDefs[k].name+'</strong><small>'+counts[k]+' available · '+unitDefs[k].power+' power</small></span></button>').join("")+'<div class="deployment-summary">Deployed: <strong>'+battle.placements.length+'</strong></div><button class="gold ready-btn" data-battle-ready '+(battle.placements.length===0?'disabled':'')+'>Ready — Fight!</button></aside></div>';
+ }else{stage.innerHTML='<div class="battle-head"><div><div class="section-kicker">Battle in progress</div><h3>Assault on '+t.name+'</h3></div></div><div class="combat-arena" id="combatArena">'+battle.placements.map((p,i)=>'<span class="combat-unit friendly" style="--delay:'+(i*.12)+'s">'+unitDefs[p.unit].icon+'</span>').join("")+'<span class="combat-clash">⚔</span>'+Array.from({length:Math.max(3,Math.ceil(t.enemy/20))},(_,i)=>'<span class="combat-unit enemy" style="--delay:'+(i*.09)+'s">👹</span>').join("")+'</div><div class="battle-result" id="battleResult">Steel meets steel...</div>'}
+}
+function resolveBattle(){
+ if(!activeBattle||activeBattle.phase!=="deploy"||!activeBattle.placements.length)return;
+ const t=regions[activeBattle.index],p=activeBattle.placements;activeBattle.phase="combat";renderBattle();
+ let score=p.reduce((n,x)=>n+unitDefs[x.unit].power,0);score+=p.filter(x=>x.cell<5&&(x.unit==="knight"||x.unit==="militia")).length*3;score+=p.filter(x=>x.unit==="archer"&&x.cell>=10).length*4;score+=p.filter(x=>x.unit==="siege").length*(t.type==="stronghold"?22:8);if(state.research.siegecraft)score+=p.filter(x=>x.unit==="siege").length*16;if(state.research.drills)score=Math.floor(score*1.2);
+ const won=score>=t.enemy,lossChance=won?.12:.35,losses={};p.forEach(x=>{if(Math.random()<lossChance)losses[x.unit]=(losses[x.unit]||0)+1});Object.keys(losses).forEach(k=>state.army[k]=Math.max(0,(state.army[k]||0)-losses[k]));
+ setTimeout(()=>{if(!activeBattle)return;const arena=document.getElementById("combatArena"),result=document.getElementById("battleResult");if(arena)arena.classList.add(won?"battle-won":"battle-lost");
+ if(won){if(t.type==="plunder"){Object.keys(t.reward).forEach(k=>state.resources[k]=(state.resources[k]||0)+t.reward[k]*(state.research.stewardship?1.1:1));result.innerHTML='<strong class="victory-text">Village plundered!</strong><p>Recovered '+Object.entries(t.reward).map(([k,v])=>'+'+v+' '+resourceMeta[k].name.toLowerCase()).join(' · ')+'.</p>'}else{state.buildings[t.building]=(state.buildings[t.building]||0)+1;result.innerHTML='<strong class="victory-text">Stronghold captured!</strong><p>Seized '+buildingDefs[t.building].name+'. Building level is now '+state.buildings[t.building]+'.</p>'}state.raids[t.name]=(state.raids[t.name]||0)+1;addLog('<strong>Victory at '+t.name+'!</strong> '+(t.type==="plunder"?"Supplies recovered.":buildingDefs[t.building].name+" seized.")+" Formation strength: "+score+".","good")}
+ else{result.innerHTML='<strong class="defeat-text">Raid repelled</strong><p>The defenders held. Rebuild your force and adjust your formation.</p>';addLog("Raid at <strong>"+t.name+"</strong> repelled. Formation strength "+score+" / "+t.enemy+".","warn")}
+ result.innerHTML+='<div class="battle-result-actions"><button class="gold" data-battle-finish>Return to War Table</button></div>';renderResources();renderBuildings();renderUnits();renderBanner();renderLog();persistQuiet()
+ },1500)
 }
 const expeditionDefs={
  wood:{name:"Timber Recon Team",icon:"🪓",desc:"Send woodcutters and scouts to a nearby stand of timber.",amount:45,label:"timber"},
@@ -314,46 +319,25 @@ function renderResearch(){
  }).join("");
 }
 function renderMap(){
- const shell=document.getElementById("mapShell");
- const coords=[{x:15,y:24},{x:32,y:42},{x:49,y:23},{x:64,y:57},{x:78,y:27},{x:86,y:70}];
- const paths=coords.map(p=>(p.x/100*1000)+","+(p.y/100*600)).join(" ");
- let routeSvg='<svg class="map-art" viewBox="0 0 1000 600" preserveAspectRatio="none" style="z-index:1;pointer-events:none"><polyline points="'+paths+'" fill="none" stroke="#d8b66b" stroke-opacity=".8" stroke-width="4" stroke-dasharray="10 10"/><polyline points="'+paths+'" fill="none" stroke="#f3e4ac" stroke-opacity=".22" stroke-width="1"/></svg>';
- const existing=shell.querySelector(".map-art");
- if(existing){
-  const overlay= shell.querySelector(".map-route-overlay");
-  if(overlay)overlay.remove();
-  const route=document.createElement("div");route.className="map-route-overlay";route.innerHTML=routeSvg;shell.appendChild(route);
- }
- shell.querySelectorAll(".map-node").forEach(el=>el.remove());
- regions.forEach((r,i)=>{
-  const c=coords[i],captured=state.captured.includes(i),unlocked=i===0||state.captured.includes(i-1);
-  const b=document.createElement("button");
-  b.className="map-node"+(captured?" captured":"")+(unlocked?"":" locked")+(selectedRegion===i?" selected":"");
-  b.style.left=c.x+"%";b.style.top=c.y+"%";b.dataset.regionSelect=String(i);
-  b.setAttribute("aria-label","Select "+r.name+(captured?", secured":unlocked?", frontier":", locked"));
-  b.innerHTML='<span class="map-pin">'+r.icon+(captured?'<i class="pin-status">✓</i>':!unlocked?'<i class="pin-status" style="background:#747c6d;color:#10140e">•</i>':'')+'</span><span class="map-label">'+r.name+'</span>';
-  shell.appendChild(b);
- });
- if(!regions[selectedRegion])selectedRegion=0;
- const r=regions[selectedRegion],i=selectedRegion,captured=state.captured.includes(i),unlocked=i===0||state.captured.includes(i-1),power=armyPower(),cost=campaignCost(),afford=canAfford(cost);
- const detail=document.getElementById("regionDetail");
- const status=captured?'<span class="badge success">✓ Territory secured</span>':unlocked?'<span class="badge">Available frontier</span>':'<span class="badge lock">🔒 Secure the previous region first</span>';
- const action=captured?'<button disabled>Territory secured</button>':!unlocked?'<button disabled>Frontier locked</button>':'<button class="'+(power>=r.enemy?"gold":"danger")+'" data-campaign="'+i+'" '+(afford?"":"disabled")+'>'+(power>=r.enemy?"Launch campaign":"Outmatched — risk defeat")+'</button>';
- detail.innerHTML='<div><div class="section-kicker">Territory '+String(i+1).padStart(2,"0")+' / 06</div><h3>'+r.icon+' '+r.name+'</h3><div>'+status+'</div><p>'+r.desc+'</p><div class="detail-metrics"><span>Orc strength <strong>'+r.enemy+'</strong></span><span>Your army <strong style="color:'+(power>=r.enemy?"var(--green)":"var(--red)")+'">'+power+'</strong></span></div><p style="margin-top:10px"><strong style="color:var(--text)">Spoils:</strong> '+costText(r.reward)+'</p><p><strong style="color:var(--text)">Supply cost:</strong> '+costText(cost)+'</p></div><div class="detail-side"><div class="cost">'+(captured?"The Crown controls this territory.":unlocked?"Campaigns consume supplies. If your army is weaker, the attack may be repelled.":"Capture the previous region to open this front.")+'</div>'+action+'</div>';
+ const shell=document.getElementById("mapShell"),coords=[{x:15,y:24},{x:32,y:42},{x:49,y:23},{x:64,y:57},{x:78,y:27},{x:86,y:70}],paths=coords.map(p=>(p.x/100*1000)+","+(p.y/100*600)).join(" ");
+ const old=shell.querySelector(".map-route-overlay");if(old)old.remove();const route=document.createElement("div");route.className="map-route-overlay";route.innerHTML='<svg class="map-art" viewBox="0 0 1000 600" preserveAspectRatio="none" style="z-index:1;pointer-events:none"><polyline points="'+paths+'" fill="none" stroke="#d8b66b" stroke-opacity=".65" stroke-width="3" stroke-dasharray="5 12"/></svg>';shell.appendChild(route);shell.querySelectorAll(".map-node").forEach(el=>el.remove());
+ regions.forEach((r,i)=>{const c=coords[i],count=state.raids[r.name]||0,b=document.createElement("button");b.className="map-node"+(count?" captured":"")+(selectedRegion===i?" selected":"");b.style.left=c.x+"%";b.style.top=c.y+"%";b.dataset.regionSelect=String(i);b.setAttribute("aria-label","Select "+r.name);b.innerHTML='<span class="map-pin">'+r.icon+(count?'<i class="pin-status">'+count+'</i>':'')+'</span><span class="map-label">'+r.name+'</span>';shell.appendChild(b)});
+ if(!regions[selectedRegion])selectedRegion=0;const r=regions[selectedRegion],i=selectedRegion,count=state.raids[r.name]||0,detail=document.getElementById("regionDetail"),type=r.type==="plunder"?"Village Plunder":"Orc Stronghold",reward=r.type==="plunder"?Object.entries(r.reward).map(([k,v])=>"+"+v+" "+resourceMeta[k].name.toLowerCase()).join(" · "):"1 "+buildingDefs[r.building].name;
+ detail.innerHTML='<div><div class="section-kicker">'+type+' · TARGET '+String(i+1).padStart(2,"0")+'</div><h3>'+r.icon+' '+r.name+'</h3><div><span class="badge '+(count?'success':'')+'">'+(count?"Raided "+count+" times":"Target available")+'</span></div><p>'+r.desc+'</p><div class="detail-metrics"><span>Defender strength <strong>'+r.enemy+'</strong></span><span>Army power <strong>'+armyPower()+'</strong></span></div><p style="margin-top:10px"><strong style="color:var(--text)">Reward:</strong> '+reward+'</p><p><strong style="color:var(--text)">Deployment supplies:</strong> '+costText(campaignCost())+'</p></div><div class="detail-side"><div class="cost">'+(r.type==="plunder"?"Win to carry supplies home.":"Win to seize a permanent building for your economy.")+'</div><button class="gold" data-start-raid="'+i+'">Plan Raid</button></div>';renderBattle()
 }
 function renderLog(){
  const el=document.getElementById("log");
  el.innerHTML=state.logs.length?state.logs.slice(0,25).map(l=>'<div class="log-entry '+(l.type||"")+'"><span class="time">'+new Date(l.time).toLocaleTimeString([],{hour:"2-digit",minute:"2-digit"})+'</span>'+l.message+'</div>').join(""):'<div class="empty">No dispatches yet.</div>';
 }
 function renderBanner(){
- const n=state.captured.length,p=armyPower(),next=regions[n];
- document.getElementById("territoryStat").textContent=n+" / "+regions.length;
+ const n=Object.values(state.raids||{}).reduce((a,b)=>a+b,0),p=armyPower(),next=regions[0];
+ document.getElementById("territoryStat").textContent=n+" raids";
  document.getElementById("armyStat").textContent=p;
  document.getElementById("bonusStat").textContent="+"+(n*7+(state.research.tools?15:0)+(state.research.stewardship?10:0))+"%";
  document.getElementById("statusStat").textContent=n===regions.length?"Victorious":n===0?"Gathering":"Advancing";
- document.getElementById("warProgress").style.width=(n/regions.length*100)+"%";
- document.getElementById("dispatchTitle").textContent=n===regions.length?"The realm is liberated.":n===0?"The realm is not yet lost.":next.name+" awaits.";
- document.getElementById("dispatchText").textContent=n===regions.length?"The orc warlord is defeated. Keep expanding your economy, muster elite forces, and perfect the Crown's war machine.":n===0?"Our scouts report orc banners on the horizon. Turn timber, iron and harvest into a fighting force. The frontier will not reclaim itself.":"The banners of the Crown now fly over "+state.captured.map(i=>regions[i].name).join(", ")+". Secure the next frontier, reinforce your supply lines, and keep the army fed.";
+ document.getElementById("warProgress").style.width=Math.min(100,n/12*100)+"%";
+ document.getElementById("dispatchTitle").textContent=n===0?"The orcs hold the villages and strongholds.":"The Crown has struck "+n+" successful raids.";
+ document.getElementById("dispatchText").textContent="Plunder villages for resources, raid strongholds to seize buildings, and arrange your troops carefully before every assault.";
 }
 function render(){renderResources();renderBuildings();renderUnits();renderResearch();renderMap();renderLog();renderBanner();renderFieldOrders()}
 function persistQuiet(){state.lastTick=Date.now();try{localStorage.setItem(SAVE_KEY,JSON.stringify(state))}catch(e){}}
@@ -376,6 +360,11 @@ document.querySelectorAll("[data-tab]").forEach(function(button){
 document.addEventListener("click",function(e){
  const b=e.target.closest("button");if(!b)return;
  if(b.dataset.regionSelect!==undefined){selectedRegion=Number(b.dataset.regionSelect);renderMap();return;}
+ if(b.dataset.startRaid!==undefined){openBattle(Number(b.dataset.startRaid));return;}
+ if(b.dataset.pickUnit){if(activeBattle&&activeBattle.phase==="deploy")activeBattle.selected=b.dataset.pickUnit;renderBattle();return;}
+ if(b.dataset.battleCell!==undefined){if(activeBattle&&activeBattle.phase==="deploy"&&activeBattle.selected){const cell=Number(b.dataset.battleCell);if(!activeBattle.placements.some(p=>p.cell===cell)&&(state.army[activeBattle.selected]||0)>activeBattle.placements.filter(p=>p.unit===activeBattle.selected).length){activeBattle.placements.push({cell,unit:activeBattle.selected});renderBattle()}else toast("Choose an available unit type first")}else toast("Select a unit type first");return;}
+ if(b.hasAttribute("data-battle-ready")){resolveBattle();return;}
+ if(b.hasAttribute("data-battle-cancel")||b.hasAttribute("data-battle-finish")){closeBattle();return;}
  if(b.dataset.expedition)launchExpedition(b.dataset.expedition);
  if(b.dataset.build)build(b.dataset.build);
  if(b.dataset.recruit)recruit(b.dataset.recruit);
