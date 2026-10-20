@@ -15,8 +15,8 @@ header{display:flex;align-items:center;justify-content:space-between;gap:20px;pa
 .layout{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(300px,.85fr);gap:18px;align-items:start}.column{display:grid;gap:18px;min-width:0}.panel{background:linear-gradient(160deg,#1a201a,#141814);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}.panel-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:15px 17px;border-bottom:1px solid var(--line);background:#ffffff04}.panel-head h3{margin:0;font-size:15px;letter-spacing:.04em}.panel-head p{margin:2px 0 0;color:var(--muted);font-size:12px}.panel-body{padding:15px 17px}.section-kicker{font-size:10px;text-transform:uppercase;letter-spacing:.18em;color:var(--gold);font-weight:800}
 .building-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.building{border:1px solid #303a2e;background:#1c231c;border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:9px;min-width:0}.item-top{display:flex;gap:10px;align-items:flex-start}.item-icon{width:38px;height:38px;flex:0 0 38px;display:grid;place-items:center;border:1px solid #45513c;background:#293226;border-radius:8px;font-size:21px}.item-name{font-weight:700}.item-level{color:var(--gold);font-size:11px;letter-spacing:.04em}.item-desc{color:var(--muted);font-size:12px;line-height:1.4;min-height:33px}.item-footer{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto}.item-footer button{font-size:12px;padding:7px 10px;white-space:nowrap}.cost{font-size:11px;color:#c2c8b8;line-height:1.55}.cost span{white-space:nowrap}.unit-list,.research-list{display:grid;gap:9px}.unit,.tech{display:grid;grid-template-columns:40px minmax(0,1fr) auto;gap:10px;align-items:center;padding:10px;border:1px solid #303a2e;background:#1b211b;border-radius:9px}.unit .item-icon,.tech .item-icon{width:38px;height:38px}.unit p,.tech p{margin:2px 0;color:var(--muted);font-size:12px}.unit button,.tech button{font-size:12px;white-space:nowrap}.power{color:var(--gold);font-size:11px;font-weight:700}
 .region-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.region{border:1px solid #3a4334;border-radius:10px;padding:13px;background:linear-gradient(150deg,#20271f,#171c17);display:flex;flex-direction:column;gap:9px;min-width:0}.region.captured{border-color:#63774e;background:linear-gradient(150deg,#263324,#171d17)}.region.locked{opacity:.58}.region-top{display:flex;gap:10px;align-items:flex-start}.region-art{width:48px;height:48px;flex:0 0 48px;border-radius:9px;border:1px solid #4c5139;background:#2a3025;display:grid;place-items:center;font-size:26px}.region h4{margin:0;font-size:14px}.region .region-desc{font-size:12px;color:var(--muted);margin-top:2px}.region-meta{display:flex;justify-content:space-between;gap:8px;font-size:11px;color:#c1c7b8}.region button{width:100%;font-size:12px}.badge{font-size:10px;text-transform:uppercase;letter-spacing:.12em;font-weight:800;color:var(--gold)}.badge.success{color:#a6cb8c}.badge.lock{color:#888e81}
-.actions{display:flex;gap:8px;flex-wrap:wrap}.actions button{flex:1;min-width:120px}.log{display:flex;flex-direction:column;gap:8px;max-height:270px;overflow:auto}.log-entry{font-size:12px;color:#b7bead;border-left:2px solid #5a664b;padding:2px 0 2px 10px}.log-entry strong{color:#e3d6ae;font-weight:650}.log-entry .time{color:#7e8876;font-size:10px;margin-right:6px}.log-entry.warn{border-color:var(--red)}.log-entry.good{border-color:var(--green)}.empty{font-size:12px;color:var(--muted);padding:12px 0}.footnote{font-size:11px;color:#7f887a;text-align:center;margin:20px 0 8px}.toast{position:fixed;right:20px;bottom:20px;background:#303a2a;border:1px solid #71835a;border-radius:10px;padding:12px 16px;box-shadow:0 12px 40px #0009;max-width:320px;z-index:10;animation:rise .2s ease-out}@keyframes rise{from{transform:translateY(8px);opacity:0}to{transform:translateY(0);opacity:1}}
-@media(max-width:900px){.layout{grid-template-columns:1fr}.war-banner{grid-template-columns:1fr}.banner-stats{grid-template-columns:repeat(4,1fr)}}@media(max-width:620px){.wrap{padding:13px}.brand h1{font-size:22px}.sigil{width:42px;height:42px}.subtitle{display:none}.resources{grid-template-columns:repeat(2,minmax(0,1fr))}.resource:last-child{grid-column:span 2}.res-value{font-size:20px}.banner-stats{grid-template-columns:repeat(2,1fr)}.building-grid,.region-list{grid-template-columns:1fr}.header-actions button{font-size:12px;padding:7px 9px}.war-banner{padding:16px}.banner-copy h2{font-size:20px}.unit,.tech{grid-template-columns:38px minmax(0,1fr)}.unit button,.tech button{grid-column:2;justify-self:start}.item-desc{min-height:0}}
+.actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.field-order{border:1px solid #394533;background:linear-gradient(150deg,#20271f,#171c17);border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:8px;min-width:0}.field-order .item-icon{width:36px;height:36px;font-size:20px}.field-order .item-desc{min-height:42px}.field-order button{margin-top:auto;width:100%;font-size:12px}.expedition-progress{height:5px;background:#0b0e0b;border:1px solid #394033;border-radius:8px;overflow:hidden}.expedition-progress span{display:block;height:100%;background:linear-gradient(90deg,#8eaa6d,#d8b66b);transition:width .5s}.expedition-status{font-size:11px;color:var(--gold);font-variant-numeric:tabular-nums}.actions button{flex:1;min-width:120px}.log{display:flex;flex-direction:column;gap:8px;max-height:270px;overflow:auto}.log-entry{font-size:12px;color:#b7bead;border-left:2px solid #5a664b;padding:2px 0 2px 10px}.log-entry strong{color:#e3d6ae;font-weight:650}.log-entry .time{color:#7e8876;font-size:10px;margin-right:6px}.log-entry.warn{border-color:var(--red)}.log-entry.good{border-color:var(--green)}.empty{font-size:12px;color:var(--muted);padding:12px 0}.footnote{font-size:11px;color:#7f887a;text-align:center;margin:20px 0 8px}.toast{position:fixed;right:20px;bottom:20px;background:#303a2a;border:1px solid #71835a;border-radius:10px;padding:12px 16px;box-shadow:0 12px 40px #0009;max-width:320px;z-index:10;animation:rise .2s ease-out}@keyframes rise{from{transform:translateY(8px);opacity:0}to{transform:translateY(0);opacity:1}}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.war-banner{grid-template-columns:1fr}.banner-stats{grid-template-columns:repeat(4,1fr)}}@media(max-width:620px){.actions{grid-template-columns:1fr}.wrap{padding:13px}.brand h1{font-size:22px}.sigil{width:42px;height:42px}.subtitle{display:none}.resources{grid-template-columns:repeat(2,minmax(0,1fr))}.resource:last-child{grid-column:span 2}.res-value{font-size:20px}.banner-stats{grid-template-columns:repeat(2,1fr)}.building-grid,.region-list{grid-template-columns:1fr}.header-actions button{font-size:12px;padding:7px 9px}.war-banner{padding:16px}.banner-copy h2{font-size:20px}.unit,.tech{grid-template-columns:38px minmax(0,1fr)}.unit button,.tech button{grid-column:2;justify-self:start}.item-desc{min-height:0}}
 
 .tabs{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 18px;padding:7px;background:#121711;border:1px solid var(--line);border-radius:12px}
 .tab-btn{background:transparent;border-color:transparent;color:var(--muted);padding:10px 15px;font-weight:700;font-size:13px;display:flex;align-items:center;gap:8px}
@@ -72,8 +72,8 @@ header{display:flex;align-items:center;justify-content:space-between;gap:20px;pa
       <div class="panel-body"><div class="building-grid" id="buildings"></div></div>
     </section>
     <section class="panel">
-      <div class="panel-head"><div><h3>Field Orders</h3><p>Quickly gather supplies when production falls short.</p></div><span class="section-kicker">Clicker</span></div>
-      <div class="panel-body"><div class="actions"><button id="chopBtn">🪓 Chop timber <strong>+8 wood</strong></button><button id="forageBtn">🌾 Forage provisions <strong>+8 food</strong></button><button id="mineBtn">⛏ Scavenge iron <strong>+3 iron</strong></button></div></div>
+      <div class="panel-head"><div><h3>Field Orders</h3><p>Deploy specialist teams to gather supplies. Each mission takes 1 minute.</p></div><span class="section-kicker">Expeditions</span></div>
+      <div class="panel-body"><div class="actions" id="fieldOrders"></div></div>
     </section>
   </div>
 </section>
@@ -172,7 +172,7 @@ const initialState=()=>({
  buildings:{lumber:1,farm:1,quarry:0,ironmine:0,market:0,barracks:1},
  army:{militia:8,archer:0,knight:0,siege:0},
  research:{tools:false,drills:false,supply:false,siegecraft:false,stewardship:false},
- captured:[],logs:[],lastTick:Date.now(),createdAt:Date.now()
+ captured:[],logs:[],expeditions:[],lastTick:Date.now(),createdAt:Date.now()
 });
 let state;
 let selectedRegion = 0;
@@ -181,10 +181,11 @@ function load(){
   const raw=localStorage.getItem(SAVE_KEY);
   if(!raw){state=initialState();addLog("The council convenes. The Crown's war effort begins.","good");return}
   const parsed=JSON.parse(raw), fresh=initialState();
-  state={...fresh,...parsed,resources:{...fresh.resources,...parsed.resources},buildings:{...fresh.buildings,...parsed.buildings},army:{...fresh.army,...parsed.army},research:{...fresh.research,...parsed.research},captured:Array.isArray(parsed.captured)?parsed.captured:[],logs:Array.isArray(parsed.logs)?parsed.logs:[]};
+  state={...fresh,...parsed,resources:{...fresh.resources,...parsed.resources},buildings:{...fresh.buildings,...parsed.buildings},army:{...fresh.army,...parsed.army},research:{...fresh.research,...parsed.research},captured:Array.isArray(parsed.captured)?parsed.captured:[],logs:Array.isArray(parsed.logs)?parsed.logs:[],expeditions:Array.isArray(parsed.expeditions)?parsed.expeditions:[]};
   const elapsed=Math.max(0,Math.min(8*60*60,(Date.now()-(Number(state.lastTick)||Date.now()))/1000));
   if(elapsed>5){const rates=production();Object.keys(rates).forEach(k=>state.resources[k]+=rates[k]*elapsed);addLog("Returning after "+formatDuration(elapsed)+": your workshops produced supplies while you were away.","good")}
   state.lastTick=Date.now();
+  completeExpeditions(Date.now(),false);
  }catch(e){state=initialState();addLog("A damaged save was replaced with a fresh campaign.","warn")}
 }
 function save(){state.lastTick=Date.now();try{localStorage.setItem(SAVE_KEY,JSON.stringify(state));toast("Campaign saved in this browser.")}catch(e){toast("Could not save. Check browser storage settings.")}}
@@ -250,7 +251,41 @@ function campaign(index){
  }
  render();persistQuiet();
 }
-function gather(k,amount,label){state.resources[k]+=amount;addLog("Field order completed: "+label+" (+"+amount+" "+resourceMeta[k].name.toLowerCase()+").");render();persistQuiet()}
+const expeditionDefs={
+ wood:{name:"Timber Recon Team",icon:"🪓",desc:"Send woodcutters and scouts to a nearby stand of timber.",amount:45,label:"timber"},
+ food:{name:"Foraging Party",icon:"🌾",desc:"Dispatch gatherers to forage provisions for the war effort.",amount:45,label:"provisions"},
+ iron:{name:"Salvage Squad",icon:"⛏️",desc:"Recover iron from abandoned tools, wrecks and old battlefields.",amount:18,label:"iron"}
+};
+const EXPEDITION_MS=60000;
+function launchExpedition(k){
+ if(!expeditionDefs[k]||state.expeditions.some(x=>x.resource===k)){return}
+ const now=Date.now(),d=expeditionDefs[k];
+ state.expeditions.push({resource:k,amount:d.amount,startedAt:now,endsAt:now+EXPEDITION_MS});
+ addLog("Field order launched: "+d.name+" is away for 1 minute.","good");
+ render();persistQuiet();toast(d.name+" deployed. Supplies arrive in 1 minute.");
+}
+function completeExpeditions(now,notify=true){
+ const active=Array.isArray(state.expeditions)?state.expeditions:[];
+ const done=active.filter(x=>Number(x.endsAt)<=now);
+ if(!done.length)return;
+ state.expeditions=active.filter(x=>Number(x.endsAt)>now);
+ done.forEach(x=>{
+  const d=expeditionDefs[x.resource];if(!d)return;
+  const amount=Number(x.amount)||d.amount;
+  state.resources[x.resource]=Math.min(999999999,(Number(state.resources[x.resource])||0)+amount);
+  addLog("Field team returned: "+d.name+" delivered +"+amount+" "+resourceMeta[x.resource].name.toLowerCase()+".","good");
+  if(notify)toast(d.name+" returned with supplies.");
+ });
+}
+function renderFieldOrders(){
+ const now=Date.now(),el=document.getElementById("fieldOrders");
+ el.innerHTML=Object.keys(expeditionDefs).map(k=>{
+  const d=expeditionDefs[k],mission=state.expeditions.find(x=>x.resource===k),remaining=mission?Math.max(0,mission.endsAt-now):0;
+  const progress=mission?Math.min(100,Math.max(0,(1-remaining/EXPEDITION_MS)*100)):0;
+  const status=mission?'<div class="expedition-status">In the field · '+Math.ceil(remaining/1000)+'s remaining</div><div class="expedition-progress"><span style="width:'+progress+'%"></span></div>':'<div class="expedition-status">Ready to deploy · 1 minute</div>';
+  return '<div class="field-order"><div class="item-top"><div class="item-icon">'+d.icon+'</div><div><div class="item-name">'+d.name+'</div><div class="item-level">REWARD: +'+d.amount+' '+resourceMeta[k].name.toLowerCase()+'</div></div></div><div class="item-desc">'+d.desc+'</div>'+status+'<button data-expedition="'+k+'" '+(mission?'disabled':'')+'>'+(mission?'Team deployed':'Launch team')+'</button></div>';
+ }).join("");
+}
 function renderResources(){
  const rates=production();
  document.getElementById("resources").innerHTML=Object.keys(resourceMeta).map(k=>{
@@ -320,12 +355,13 @@ function renderBanner(){
  document.getElementById("dispatchTitle").textContent=n===regions.length?"The realm is liberated.":n===0?"The realm is not yet lost.":next.name+" awaits.";
  document.getElementById("dispatchText").textContent=n===regions.length?"The orc warlord is defeated. Keep expanding your economy, muster elite forces, and perfect the Crown's war machine.":n===0?"Our scouts report orc banners on the horizon. Turn timber, iron and harvest into a fighting force. The frontier will not reclaim itself.":"The banners of the Crown now fly over "+state.captured.map(i=>regions[i].name).join(", ")+". Secure the next frontier, reinforce your supply lines, and keep the army fed.";
 }
-function render(){renderResources();renderBuildings();renderUnits();renderResearch();renderMap();renderLog();renderBanner()}
+function render(){renderResources();renderBuildings();renderUnits();renderResearch();renderMap();renderLog();renderBanner();renderFieldOrders()}
 function persistQuiet(){state.lastTick=Date.now();try{localStorage.setItem(SAVE_KEY,JSON.stringify(state))}catch(e){}}
 function tick(){
  const now=Date.now(),elapsed=Math.max(0,Math.min(5,(now-(state.lastTick||now))/1000));
+ completeExpeditions(now,true);
  if(elapsed>0){const rates=production();Object.keys(rates).forEach(k=>state.resources[k]=Math.min(999999999,state.resources[k]+rates[k]*elapsed));state.lastTick=now;}
- renderResources();renderBuildings();renderUnits();renderResearch();renderMap();renderBanner();
+ renderResources();renderBuildings();renderUnits();renderResearch();renderMap();renderBanner();renderFieldOrders();
  if(Math.floor(now/10000)!==Math.floor((now-1000)/10000))persistQuiet();
 }
 
@@ -340,6 +376,7 @@ document.querySelectorAll("[data-tab]").forEach(function(button){
 document.addEventListener("click",function(e){
  const b=e.target.closest("button");if(!b)return;
  if(b.dataset.regionSelect!==undefined){selectedRegion=Number(b.dataset.regionSelect);renderMap();return;}
+ if(b.dataset.expedition)launchExpedition(b.dataset.expedition);
  if(b.dataset.build)build(b.dataset.build);
  if(b.dataset.recruit)recruit(b.dataset.recruit);
  if(b.dataset.research)research(b.dataset.research);
@@ -351,9 +388,6 @@ document.getElementById("resetBtn").addEventListener("click",function(){
   localStorage.removeItem(SAVE_KEY);state=initialState();addLog("A new campaign begins under the Crown's banner.","good");render();persistQuiet();toast("Campaign reset.");
  }
 });
-document.getElementById("chopBtn").addEventListener("click",()=>gather("wood",8,"chopping timber"));
-document.getElementById("forageBtn").addEventListener("click",()=>gather("food",8,"foraging provisions"));
-document.getElementById("mineBtn").addEventListener("click",()=>gather("iron",3,"scavenging iron"));
 document.getElementById("clearLogBtn").addEventListener("click",()=>{state.logs=[];renderLog();persistQuiet()});
 window.addEventListener("beforeunload",persistQuiet);
 document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="hidden")persistQuiet()});
