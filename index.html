@@ -105,7 +105,7 @@ if(boss){$('bossbar').classList.add('show');$('bossHp').style.width=clamp(boss.h
 renderUI()}
 function draw(){const w=g.w,h=g.h;ctx.clearRect(0,0,w,h);const bg=ctx.createLinearGradient(0,0,w,h);bg.addColorStop(0,'#171b22');bg.addColorStop(.55,'#10151b');bg.addColorStop(1,'#1d141e');ctx.fillStyle=bg;ctx.fillRect(0,0,w,h);
 const tile=42;for(let y=0;y<h;y+=tile)for(let x=0;x<w;x+=tile){ctx.strokeStyle=((x/tile+y/tile)%2===0)?'#262c31':'#20272d';ctx.lineWidth=.6;ctx.strokeRect(x,y,tile,tile);if((Math.sin(x*12.3+y*4.2)*1000)%1>.5){ctx.fillStyle='#40413b';ctx.globalAlpha=.2;ctx.fillRect(x+rand(4,35),y+rand(4,35),2,2);ctx.globalAlpha=1}}
-for(let i=0;i<14;i++){const x=(i*173+57)%w,y=(i*109+27)%h;ctx.fillStyle='#27332e';ctx.beginPath();ctx.ellipse(x,y,rand(12,24),rand(4,10),rand(0,3),0,Math.PI*2);ctx.fill();ctx.strokeStyle='#37433a';ctx.stroke()}
+
 const p=g.player;
 for(const o of orbs){ctx.globalAlpha=.4+Math.sin(elapsed*7+o.x)*.25;ctx.fillStyle=o.color;ctx.beginPath();ctx.arc(o.x,o.y,o.r+2,0,Math.PI*2);ctx.fill();ctx.globalAlpha=1;ctx.fillStyle=o.color;ctx.beginPath();ctx.arc(o.x,o.y,o.r,0,Math.PI*2);ctx.fill()}
 for(const a of particles){ctx.globalAlpha=clamp(a.life/(a.max||.5),0,1);if(a.ring){ctx.strokeStyle=a.color;ctx.lineWidth=2;ctx.beginPath();ctx.arc(a.x,a.y,a.r*(1-a.life/(a.max||1)*.2),0,Math.PI*2);ctx.stroke()}else{ctx.fillStyle=a.color;ctx.beginPath();ctx.arc(a.x,a.y,a.r,0,Math.PI*2);ctx.fill()}ctx.globalAlpha=1}
